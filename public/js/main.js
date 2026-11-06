@@ -1,4 +1,4 @@
-/* Hipnos AI — web base (paso 1). Idioma ES/EN, modo claro/oscuro, buscador de servicios y luces de los bordes. */
+/* Hipnos AI — web base. Idioma EN/ES (empieza en inglés), modo claro/oscuro (empieza claro), chat con IA y luces de los bordes. */
 (function () {
   'use strict';
 
@@ -11,9 +11,16 @@
       themeLabel: 'Cambiar entre modo claro y oscuro',
       h1a: 'Tu idea,', h1b: 'hecha realidad.',
       heroSub: 'Creamos asistentes, agentes de IA, automatizaciones y aplicaciones para que tu negocio atienda y venda sin pausa.',
-      searchLabel: 'Asistente de Hipnos AI', searchPlaceholder: 'Busca una tarea, automatización o herramienta…', searchBtn: 'Buscar',
-      chips: [['Ventas', 'ventas'], ['WhatsApp', 'whatsapp'], ['Seguimiento de tareas', 'tareas'], ['Desarrollo', 'desarrollo']],
-      createTitle: '¿Qué podemos crear hoy?', showAll: 'Ver todo', noResults: 'Todavía no ofrecemos eso. Escríbenos y lo evaluamos contigo.',
+      chatTitle: 'Asistente de Hipnos AI', chatLogLabel: 'Conversación', chatPlaceholder: 'Escribe tu mensaje…', chatSend: 'Enviar',
+      chatNote: 'Las respuestas de la IA pueden tener errores. Los mensajes los procesa nuestro proveedor de IA; no compartas datos sensibles.',
+      privacyLink: 'Privacidad', chipsLabel: 'Preguntas sugeridas',
+      chatHello: '¡Hola! Soy el asistente de Hipnos AI. Pregúntame cómo un chatbot o un agente de IA puede ayudar a tu negocio.',
+      chatTyping: 'Escribiendo…',
+      chatErrNotConfigured: 'El asistente todavía no está conectado. Escríbenos por WhatsApp: https://wa.me/593983120422',
+      chatErrBusy: 'Hay muchas consultas en este momento. Espera un minuto e inténtalo de nuevo.',
+      chatErr: 'No pude responder ahora. Escríbenos por WhatsApp: https://wa.me/593983120422',
+      chips: ['¿Qué puede hacer un chatbot por mi negocio?', '¿Cómo es el proceso?', '¿Funciona en WhatsApp?', '¿Cómo pido una propuesta?'],
+      createTitle: '¿Qué podemos crear hoy?',
       ready: 'Disponible', soonShort: 'Próximamente',
       servicesTitle: 'Lo que construimos', servicesLead: 'Empezamos por lo que más piden los negocios: atender y vender por chat sin depender de horarios.',
       available: 'Disponible', soon: 'Próximamente',
@@ -57,9 +64,16 @@
       themeLabel: 'Switch between light and dark mode',
       h1a: 'Your idea,', h1b: 'brought to life.',
       heroSub: 'We build assistants, AI agents, automations and apps so your business answers and sells around the clock.',
-      searchLabel: 'Hipnos AI assistant', searchPlaceholder: 'Search for a task, automation or tool…', searchBtn: 'Search',
-      chips: [['Sales', 'sales'], ['WhatsApp', 'whatsapp'], ['Task tracking', 'tasks'], ['Development', 'development']],
-      createTitle: 'What can we build today?', showAll: 'Show all', noResults: 'We don’t offer that yet. Message us and we’ll look at it with you.',
+      chatTitle: 'Hipnos AI assistant', chatLogLabel: 'Conversation', chatPlaceholder: 'Write your message…', chatSend: 'Send',
+      chatNote: 'AI answers may contain mistakes. Messages are processed by our AI provider; please don’t share sensitive data.',
+      privacyLink: 'Privacy', chipsLabel: 'Suggested questions',
+      chatHello: 'Hi! I’m the Hipnos AI assistant. Ask me how an AI chatbot or agent can help your business.',
+      chatTyping: 'Typing…',
+      chatErrNotConfigured: 'The assistant isn’t connected yet. Message us on WhatsApp: https://wa.me/593983120422',
+      chatErrBusy: 'Too many requests right now. Please wait a minute and try again.',
+      chatErr: 'I couldn’t answer right now. Message us on WhatsApp: https://wa.me/593983120422',
+      chips: ['What can an AI chatbot do for my business?', 'How does the process work?', 'Does it work on WhatsApp?', 'How do I get a proposal?'],
+      createTitle: 'What can we build today?',
       ready: 'Available', soonShort: 'Coming soon',
       servicesTitle: 'What we build', servicesLead: 'We start with what businesses ask for most: answering and selling over chat, around the clock.',
       available: 'Available', soon: 'Coming soon',
@@ -115,18 +129,13 @@
   var CHECK = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0866FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>';
   var WA_NUMBER = '593983120422';
 
-  function load(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
-  function save(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* sin almacenamiento */ } }
   function $(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
   function icon(path, size) { return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + path + '"></path></svg>'; }
 
-  var savedLang = load('hipnos_lang');
-  var state = {
-    lang: savedLang === 'en' ? 'en' : 'es',
-    theme: load('hipnos_theme') === 'dark' ? 'dark' : 'light',
-    applied: ''
-  };
+  // Siempre empieza en inglés y en modo claro (público principal: habla inglesa).
+  var state = { lang: 'en', theme: 'light', history: [], busy: false };
+  var MAX_HISTORY = 12;
 
   /* ---------- tema ---------- */
   function applyTheme() {
@@ -138,43 +147,92 @@
   /* ---------- listas ---------- */
   function renderTiles() {
     var c = COPY[state.lang];
-    var q = state.applied;
-    var html = '';
-    var shown = 0;
-    c.tiles.forEach(function (row, i) {
-      var hay = (row[0] + ' ' + row[1]).toLowerCase();
-      if (q && hay.indexOf(q) === -1) { return; }
-      shown++;
+    $('tiles').innerHTML = c.tiles.map(function (row, i) {
       var L = LOOK[i];
       var ready = row[2] === 1;
-      html += '<li><a class="tile' + (i === 0 ? ' is-on' : '') + '" href="#servicios">' +
+      return '<li><a class="tile' + (i === 0 ? ' is-on' : '') + '" href="#servicios">' +
         '<span class="tile-icon" style="--g1:' + L[0] + ';--g2:' + L[1] + ';--glow:' + L[2] + '">' + icon(L[3], 22) + '</span>' +
         '<span class="tile-text"><span>' + esc(row[0]) + '</span><span class="tile-status' + (ready ? ' ready' : '') + '">' + esc(ready ? c.ready : c.soonShort) + '</span></span>' +
         '</a></li>';
-    });
-    $('tiles').innerHTML = html;
-    $('no-results').hidden = shown !== 0;
-    $('show-all').hidden = !q;
+    }).join('');
   }
 
+  /* ---------- chat ---------- */
+  function linkify(text) {
+    // texto ya escapado: negritas **x** y enlaces http(s)
+    return text
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)\]])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+  }
+  function addMsg(kind, text) {
+    var log = $('chat-log');
+    var div = document.createElement('div');
+    div.className = 'msg ' + kind;
+    div.innerHTML = linkify(esc(text));
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+    return div;
+  }
+  function resetChat() {
+    state.history = [];
+    $('chat-log').innerHTML = '';
+    addMsg('bot', COPY[state.lang].chatHello);
+  }
   function renderChips() {
     var c = COPY[state.lang];
     var box = $('chips');
     box.innerHTML = '';
-    c.chips.forEach(function (row) {
+    c.chips.forEach(function (q) {
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'chip';
-      b.textContent = row[0];
-      var on = state.applied === row[1];
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      b.addEventListener('click', function () {
-        var nowOn = state.applied === row[1];
-        state.applied = nowOn ? '' : row[1];
-        $('aic-search').value = nowOn ? '' : row[0];
-        renderChips(); renderTiles();
-      });
+      b.textContent = q;
+      b.addEventListener('click', function () { send(q); });
       box.appendChild(b);
+    });
+  }
+  function setBusy(on) {
+    state.busy = on;
+    $('chat-send').disabled = on;
+    $('chat-input').setAttribute('aria-busy', on ? 'true' : 'false');
+  }
+  function send(text, fromForm) {
+    var c = COPY[state.lang];
+    text = String(text || '').trim();
+    if (!text || state.busy) { return; }
+    if (text.length > 800) { text = text.slice(0, 800); }
+    addMsg('user', text);
+    state.history.push({ role: 'user', content: text });
+    state.history = state.history.slice(-MAX_HISTORY);
+    $('chat-input').value = '';
+    setBusy(true);
+    var typing = addMsg('bot typing', c.chatTyping);
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ lang: state.lang, messages: state.history })
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (d) { return { status: r.status, data: d }; });
+    }).then(function (res) {
+      typing.remove();
+      if (res.status === 200 && res.data && res.data.reply) {
+        addMsg('bot', res.data.reply);
+        state.history.push({ role: 'assistant', content: res.data.reply });
+        state.history = state.history.slice(-MAX_HISTORY);
+      } else if (res.data && res.data.error === 'not_configured') {
+        addMsg('error', c.chatErrNotConfigured);
+      } else if (res.status === 429) {
+        addMsg('error', c.chatErrBusy);
+      } else {
+        addMsg('error', c.chatErr);
+      }
+    }).catch(function () {
+      typing.remove();
+      addMsg('error', c.chatErr);
+    }).then(function () {
+      setBusy(false);
+      // En PC devuelve el cursor al cuadro de texto sin mover la página; en celular no, para no abrir el teclado solo.
+      if (fromForm && window.matchMedia('(min-width: 761px)').matches) { $('chat-input').focus({ preventScroll: true }); }
     });
   }
 
@@ -213,9 +271,7 @@
     $('lang-es').setAttribute('aria-pressed', state.lang === 'es' ? 'true' : 'false');
     $('lang-en').setAttribute('aria-pressed', state.lang === 'en' ? 'true' : 'false');
     $('wa-link').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(c.waText);
-    state.applied = '';
-    $('aic-search').value = '';
-    renderChips(); renderTiles(); renderStatic();
+    renderChips(); renderTiles(); renderStatic(); resetChat();
   }
 
   /* ---------- luces de los bordes ---------- */
@@ -260,20 +316,15 @@
     applyLang();
     paintLights('sparks-l', 1234);
     paintLights('sparks-r', 98765);
-    $('lang-es').addEventListener('click', function () { if (state.lang !== 'es') { state.lang = 'es'; save('hipnos_lang', 'es'); applyLang(); } });
-    $('lang-en').addEventListener('click', function () { if (state.lang !== 'en') { state.lang = 'en'; save('hipnos_lang', 'en'); applyLang(); } });
-    $('theme-btn').addEventListener('click', function () { state.theme = state.theme === 'dark' ? 'light' : 'dark'; save('hipnos_theme', state.theme); applyTheme(); });
-    $('search-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      state.applied = $('aic-search').value.trim().toLowerCase();
-      renderChips(); renderTiles();
-    });
+    $('lang-es').addEventListener('click', function () { if (state.lang !== 'es') { state.lang = 'es'; applyLang(); } });
+    $('lang-en').addEventListener('click', function () { if (state.lang !== 'en') { state.lang = 'en'; applyLang(); } });
+    $('theme-btn').addEventListener('click', function () { state.theme = state.theme === 'dark' ? 'light' : 'dark'; applyTheme(); });
+    $('chat-form').addEventListener('submit', function (e) { e.preventDefault(); send($('chat-input').value, true); });
     var menuBtn = $('menu-btn'), nav = $('main-nav');
     function setMenu(open) { nav.classList.toggle('is-open', open); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
     menuBtn.addEventListener('click', function () { setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
     Array.prototype.forEach.call(nav.querySelectorAll('a'), function (a) { a.addEventListener('click', function () { setMenu(false); }); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setMenu(false); } });
-    $('show-all').addEventListener('click', function () { state.applied = ''; $('aic-search').value = ''; renderChips(); renderTiles(); });
   }
 
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }

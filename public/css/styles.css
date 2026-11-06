@@ -98,6 +98,26 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .search-actions { display: flex; justify-content: flex-end; }
 .btn-search { height: 42px; padding: 0 24px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.55); background: linear-gradient(180deg, #2A7BFF 0%, #0650D6 100%); color: #FFFFFF; font: 600 15px Inter, sans-serif; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 8px 20px rgba(8,102,255,0.35); }
 
+/* ---------- chat del asistente ---------- */
+.chat { margin: 14px 0 0; max-width: 1020px; background: var(--glass); border: 1px solid var(--glassEdge); border-radius: 16px; -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 24px 60px var(--shadow); padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 12px; }
+.chat-head { display: flex; align-items: center; gap: 10px; }
+.chat-head h2 { margin: 0; font: 500 17px Inter, sans-serif; color: var(--ink); }
+.chat-log { height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 12px; background: var(--field); border: 1.5px solid var(--fieldEdge); scroll-behavior: smooth; }
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 16px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg.bot { align-self: flex-start; background: var(--bgAlt); border: 1px solid var(--line); color: var(--ink); border-bottom-left-radius: 4px; }
+.msg.user { align-self: flex-end; background: #0650D6; color: #FFFFFF; border-bottom-right-radius: 4px; }
+.msg.error { align-self: flex-start; background: #FEF2F2; border: 1px solid #FCA5A5; color: #7F1D1D; }
+:root[data-theme="dark"] .msg.error { background: #3B1212; border-color: #7F1D1D; color: #FECACA; }
+.msg a { color: inherit; text-decoration: underline; }
+.msg.typing { color: var(--muted); font-style: italic; }
+.chat-form { display: flex; gap: 10px; align-items: center; }
+.chat-form .field { flex: 1; }
+.chat-form .btn-search { height: 50px; padding: 0 26px; }
+.chat-form .btn-search:disabled { opacity: 0.6; cursor: progress; }
+.chat-note { margin: 0; font-size: 13px; color: var(--ink2); }
+.chat-note a { color: var(--link); }
+@media (max-width: 760px) { .chat-log { height: 320px; } .msg { max-width: 92%; } .chat-form .btn-search { padding: 0 18px; } }
+
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip { height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--glassEdge); background: var(--glass); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: var(--ink); font: 500 15px Inter, sans-serif; cursor: pointer; }
 .chip[aria-pressed="true"] { background: var(--blueTint); border-color: var(--fieldEdge); }
