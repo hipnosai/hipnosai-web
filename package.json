@@ -1,0 +1,12 @@
+{
+  "name": "hipnosai-web",
+  "private": true,
+  "description": "Web de Hipnos AI en Cloudflare Workers",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}

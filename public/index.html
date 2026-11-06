@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hipnos AI — Agentes de IA, chatbots y páginas web</title>
+<meta name="description" content="Hipnos AI crea chatbots y agentes de IA para tu web y WhatsApp, automatizaciones y páginas web. Tú lo sueñas. Nosotros lo construimos con IA.">
+<meta name="theme-color" content="#0548C8">
+<link rel="icon" href="/logo/hipnos-ai-icono.svg" type="image/svg+xml">
+<link rel="icon" href="/logo/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/logo/apple-touch-icon.png">
+<script>
+  (function () {
+    try { var t = localStorage.getItem('hipnos_theme'); if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}
+  })();
+</script>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="page">
+  <div class="aic-side aic-side-l" aria-hidden="true"></div>
+  <div class="aic-side aic-side-r" aria-hidden="true"></div>
+  <div class="aic-sparks aic-sparks-l" id="sparks-l" aria-hidden="true"></div>
+  <div class="aic-sparks aic-sparks-r" id="sparks-r" aria-hidden="true"></div>
+
+  <div class="hero-bg" aria-hidden="true">
+    <img class="hero-img" src="/assets/hero-bg.jpg" alt="" width="1376" height="768">
+    <div class="hero-overlay"></div>
+  </div>
+
+    <header class="site-header">
+      <div class="header-in">
+        <a class="brand" href="#inicio" aria-label="Hipnos AI">
+          <svg width="56" height="40" viewBox="300 232 420 302" aria-hidden="true"><defs><linearGradient id="lg1" gradientUnits="userSpaceOnUse" x1="590" y1="244" x2="312" y2="530"><stop offset="0" stop-color="#3EBBF7"></stop><stop offset="1" stop-color="#1D6DE5"></stop></linearGradient></defs><g fill="none" stroke="#3EB6F4" stroke-width="10" stroke-linejoin="round"><path d="M580 328H628L660 272"></path><path d="M580 368H664"></path><path d="M580 406H628L660 462"></path></g><rect x="318" y="242" width="274" height="234" rx="58" fill="url(#lg1)"></rect><path d="M318 420V530L382 470Z" fill="url(#lg1)"></path><rect x="365" y="310" width="184" height="116" rx="58" fill="#0D1729"></rect><rect x="414" y="338" width="24" height="58" rx="12" fill="#3FE2E8"></rect><rect x="487" y="338" width="24" height="58" rx="12" fill="#3FE2E8"></rect><g fill="#3EB6F4"><circle cx="668" cy="264" r="25"></circle><circle cx="688" cy="368" r="25"></circle><circle cx="668" cy="472" r="25"></circle></g><g fill="#FFFFFF"><circle cx="668" cy="264" r="17"></circle><circle cx="688" cy="368" r="17"></circle><circle cx="668" cy="472" r="17"></circle></g><g fill="#0D1729"><circle cx="668" cy="264" r="12.5"></circle><circle cx="688" cy="368" r="12.5"></circle><circle cx="668" cy="472" r="12.5"></circle></g></svg>
+          <span class="brand-name">Hipnos AI</span>
+        </a>
+        <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú" data-i18n-aria="menuLabel">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+        <nav class="main-nav" id="main-nav" aria-label="Menú principal" data-i18n-aria="navLabel">
+          <a href="#inicio" aria-current="page" data-i18n="nav1">Inicio</a>
+          <a href="#servicios" data-i18n="nav2">Agentes IA</a>
+          <a href="#servicios" data-i18n="nav3">Desarrollo</a>
+          <a href="#servicios" data-i18n="nav4">Automatización</a>
+          <a href="#proceso" data-i18n="nav6">Soluciones</a>
+          <a href="#preguntas" data-i18n="nav7">Recursos</a>
+        </nav>
+        <div class="header-tools">
+          <div class="lang-group" role="group" aria-label="Idioma" data-i18n-aria="langLabel">
+            <button type="button" id="lang-en" aria-pressed="false" lang="en">EN</button>
+            <button type="button" id="lang-es" aria-pressed="true" lang="es">ES</button>
+          </div>
+          <button type="button" class="theme-btn" id="theme-btn" aria-pressed="false" aria-label="Cambiar entre modo claro y oscuro" data-i18n-aria="themeLabel">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+          </button>
+          <a class="btn-cta" href="#contacto" data-i18n="navCta">Consulta gratis</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+    <section class="hero-section" id="inicio">
+      <div class="hero-in">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span data-i18n="h1a">Tu idea,</span> <span data-i18n="h1b">hecha realidad.</span></h1>
+          <p class="hero-sub" data-i18n="heroSub">Creamos asistentes, agentes de IA, automatizaciones y aplicaciones para que tu negocio atienda y venda sin pausa.</p>
+        </div>
+
+        <form class="search" id="search-form" role="search">
+          <label for="aic-search">
+            <svg width="29" height="21" viewBox="300 232 420 302" aria-hidden="true"><defs><linearGradient id="lg2" gradientUnits="userSpaceOnUse" x1="590" y1="244" x2="312" y2="530"><stop offset="0" stop-color="#3EBBF7"></stop><stop offset="1" stop-color="#1D6DE5"></stop></linearGradient></defs><g fill="none" stroke="#3EB6F4" stroke-width="10" stroke-linejoin="round"><path d="M580 328H628L660 272"></path><path d="M580 368H664"></path><path d="M580 406H628L660 462"></path></g><rect x="318" y="242" width="274" height="234" rx="58" fill="url(#lg2)"></rect><path d="M318 420V530L382 470Z" fill="url(#lg2)"></path><rect x="365" y="310" width="184" height="116" rx="58" fill="#0D1729"></rect><rect x="414" y="338" width="24" height="58" rx="12" fill="#3FE2E8"></rect><rect x="487" y="338" width="24" height="58" rx="12" fill="#3FE2E8"></rect><g fill="#3EB6F4"><circle cx="668" cy="264" r="25"></circle><circle cx="688" cy="368" r="25"></circle><circle cx="668" cy="472" r="25"></circle></g><g fill="#FFFFFF"><circle cx="668" cy="264" r="17"></circle><circle cx="688" cy="368" r="17"></circle><circle cx="668" cy="472" r="17"></circle></g><g fill="#0D1729"><circle cx="668" cy="264" r="12.5"></circle><circle cx="688" cy="368" r="12.5"></circle><circle cx="668" cy="472" r="12.5"></circle></g></svg>
+            <span data-i18n="searchLabel">Asistente de Hipnos AI</span>
+          </label>
+          <div class="field">
+            <input id="aic-search" type="search" autocomplete="off" placeholder="Busca una tarea, automatización o herramienta…" data-i18n-placeholder="searchPlaceholder">
+          </div>
+          <div class="search-actions">
+            <button type="submit" class="btn-search" data-i18n="searchBtn">Buscar</button>
+          </div>
+        </form>
+
+        <div class="chips" id="chips"></div>
+
+        <div class="create-head">
+          <h2 data-i18n="createTitle">¿Qué podemos crear hoy?</h2>
+          <button type="button" class="btn-ghost" id="show-all" hidden data-i18n="showAll">Ver todo</button>
+        </div>
+        <ul class="tiles" id="tiles"></ul>
+        <p class="no-results" id="no-results" hidden data-i18n="noResults">Todavía no ofrecemos eso. Escríbenos y lo evaluamos contigo.</p>
+      </div>
+    </section>
+
+  <section class="section" id="servicios">
+    <div class="section-in services">
+      <div class="services-intro">
+        <h2 class="h2" data-i18n="servicesTitle">Lo que construimos</h2>
+        <p class="lead" data-i18n="servicesLead">Empezamos por lo que más piden los negocios: atender y vender por chat sin depender de horarios.</p>
+      </div>
+      <div class="services-list">
+        <article class="feature-card">
+          <div class="feature-head">
+            <span class="feature-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.5 8.5 0 1 1 21 11.5z"></path><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"></path></svg>
+            </span>
+            <h3 data-i18n="sChat">Chatbots y agentes de IA</h3>
+            <span class="badge" data-i18n="available">Disponible</span>
+          </div>
+          <p class="feature-text" data-i18n="sChatT">Un asistente entrenado con la información de tu negocio que atiende a tus clientes en tu página web y en WhatsApp.</p>
+          <ul class="checks" id="chat-features"></ul>
+        </article>
+        <div class="upcoming" id="upcoming"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proceso">
+    <div class="section-in process">
+      <h2 class="h2" data-i18n="processTitle">De la primera llamada a tu agente funcionando</h2>
+      <ol class="steps" id="steps"></ol>
+    </div>
+  </section>
+
+  <section class="section alt" id="preguntas">
+    <div class="section-in">
+      <div class="faq">
+        <h2 class="h2" data-i18n="faqTitle">Preguntas frecuentes</h2>
+        <div id="faq"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <div class="contact-in">
+      <div class="contact-panel">
+        <img class="contact-net" src="/assets/plexus.svg" alt="" aria-hidden="true">
+        <div class="contact-copy">
+          <h2 data-i18n="contactTitle">Hablemos de tu negocio</h2>
+          <p data-i18n="contactSub">Cuéntanos qué quieres automatizar y te enviamos una propuesta.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn-wa" id="wa-link" href="https://wa.me/593983120422" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.5 8.5 0 1 1 21 11.5z"></path></svg>
+            <span data-i18n="contactWhatsApp">Escríbenos por WhatsApp</span>
+          </a>
+          <a class="btn-mail" href="mailto:edimatus2016@gmail.com">edimatus2016@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-in">
+      <span class="footer-tag" data-i18n="footerTag">© 2026 Hipnos AI. Tú lo sueñas. Nosotros lo construimos con IA.</span>
+      <nav class="footer-nav" aria-label="Plataformas" data-i18n-aria="platformsLabel">
+        <a href="https://www.fiverr.com/josue_carlos17" target="_blank" rel="noopener">Fiverr</a>
+        <a href="https://www.freelancer.com/u/josuev34" target="_blank" rel="noopener">Freelancer</a>
+        <a href="https://www.linkedin.com/in/josue-villacis-4721821a6/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/hipnosai" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.facebook.com/hipnosai" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/hipnosai/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+  </footer>
+</div>
+<script src="/js/main.js" defer></script>
+</body>
+</html>
