@@ -15,8 +15,8 @@
       chatNote: 'Las respuestas de la IA pueden tener errores. Los mensajes los procesa nuestro proveedor de IA; no compartas datos sensibles.',
       privacyLink: 'Privacidad', chipsLabel: 'Preguntas sugeridas',
       chatHello: '¡Hola! Soy el asistente de Hipnos AI. Pregúntame cómo un chatbot o un agente de IA puede ayudar a tu negocio.',
-      chatTyping: 'Escribiendo…', chatNew: 'Nuevo chat', chatClose: 'Cerrar chat', chatOpen: 'Abrir chat',
-      chatMoved: 'Tu conversación sigue en el panel de la derecha.',
+      chatTyping: 'Escribiendo…', chatNew: 'Nuevo chat', chatClose: 'Cerrar chat', chatOpen: 'Abrir chat', chatMin: 'Minimizar', chatMax: 'Ampliar', chatRestore: 'Tamaño normal',
+      chatMoved: 'Tu conversación sigue en la ventana del chat, abajo a la derecha.',
       chatErrNotConfigured: 'El asistente todavía no está conectado. Escríbenos por WhatsApp: https://wa.me/593983120422',
       chatErrBusy: 'Hay muchas consultas en este momento. Espera un minuto e inténtalo de nuevo.',
       chatErr: 'No pude responder ahora. Escríbenos por WhatsApp: https://wa.me/593983120422',
@@ -69,8 +69,8 @@
       chatNote: 'AI answers may contain mistakes. Messages are processed by our AI provider; please don’t share sensitive data.',
       privacyLink: 'Privacy', chipsLabel: 'Suggested questions',
       chatHello: 'Hi! I’m the Hipnos AI assistant. Ask me how an AI chatbot or agent can help your business.',
-      chatTyping: 'Typing…', chatNew: 'New chat', chatClose: 'Close chat', chatOpen: 'Open chat',
-      chatMoved: 'Your conversation continues in the panel on the right.',
+      chatTyping: 'Typing…', chatNew: 'New chat', chatClose: 'Close chat', chatOpen: 'Open chat', chatMin: 'Minimize', chatMax: 'Expand', chatRestore: 'Restore size',
+      chatMoved: 'Your conversation continues in the chat window at the bottom right.',
       chatErrNotConfigured: 'The assistant isn’t connected yet. Message us on WhatsApp: https://wa.me/593983120422',
       chatErrBusy: 'Too many requests right now. Please wait a minute and try again.',
       chatErr: 'I couldn’t answer right now. Message us on WhatsApp: https://wa.me/593983120422',
@@ -136,7 +136,7 @@
   function icon(path, size) { return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + path + '"></path></svg>'; }
 
   // Siempre empieza en inglés y en modo claro (público principal: habla inglesa).
-  var state = { lang: 'en', theme: 'light', history: [], summary: '', summarized: 0, busy: false };
+  var state = { lang: 'en', theme: 'light', history: [], summary: '', summarized: 0, busy: false, view: 'closed' };
   // Memoria de la conversación: ventana de mensajes recientes + resumen acumulado de lo anterior.
   var WINDOW = 10, MAX_UNSUMMARIZED = 14;
 
@@ -185,21 +185,30 @@
     addMsg('bot', c.chatHello, 'hero-log');
   }
   function isDesktop() { return window.matchMedia('(min-width: 761px)').matches; }
-  function openPanel() {
+  // Ventana del chat: 'closed' (solo el botón redondo), 'small' (ventana tipo WhatsApp), 'min' (solo la barra), 'max' (panel a la derecha).
+  function setView(v) {
+    var c = COPY[state.lang];
     var panel = $('chat-panel');
-    if (panel.hidden) {
-      panel.hidden = false;
-      document.body.classList.add('chat-open');
-      $('chat-fab').hidden = true;
-      var hero = $('hero-log');
-      if (!hero.querySelector('.moved')) { addMsg('bot moved', COPY[state.lang].chatMoved, 'hero-log'); }
-    }
-    if (isDesktop()) { $('panel-input').focus({ preventScroll: true }); }
+    state.view = v;
+    panel.hidden = v === 'closed';
+    panel.classList.toggle('is-small', v === 'small');
+    panel.classList.toggle('is-min', v === 'min');
+    panel.classList.toggle('is-max', v === 'max');
+    document.body.classList.toggle('chat-max', v === 'max');
+    $('chat-fab').hidden = v !== 'closed';
+    var maxBtn = $('panel-max'), minBtn = $('panel-min');
+    var maxLabel = v === 'max' ? c.chatRestore : c.chatMax;
+    var minLabel = v === 'min' ? c.chatRestore : c.chatMin;
+    maxBtn.setAttribute('aria-label', maxLabel); maxBtn.title = maxLabel;
+    minBtn.setAttribute('aria-label', minLabel); minBtn.title = minLabel;
   }
-  function closePanel() {
-    $('chat-panel').hidden = true;
-    document.body.classList.remove('chat-open');
-    $('chat-fab').hidden = state.history.length === 0;
+  function focusInput() {
+    if ((state.view === 'small' || state.view === 'max') && isDesktop()) { $('panel-input').focus({ preventScroll: true }); }
+  }
+  function openPanel() {
+    if (state.view === 'closed' || state.view === 'min') { setView('small'); }
+    var hero = $('hero-log');
+    if (state.history.length && !hero.querySelector('.moved')) { addMsg('bot moved', COPY[state.lang].chatMoved, 'hero-log'); }
   }
   function renderChips() {
     var c = COPY[state.lang];
@@ -224,9 +233,9 @@
     text = String(text || '').trim();
     if (!text || state.busy) { return; }
     if (text.length > 800) { text = text.slice(0, 800); }
-    openPanel();
     addMsg('user', text);
     state.history.push({ role: 'user', content: text });
+    openPanel();
     // Algoritmo de coherencia: lo que no cabe en la ventana se manda para resumir.
     var pending = state.history.slice(state.summarized);
     var older = [], windowMsgs = pending, foldTo = state.summarized;
@@ -263,7 +272,7 @@
       addMsg('error', c.chatErr);
     }).then(function () {
       setBusy(false);
-      if (isDesktop() && !$('chat-panel').hidden) { $('panel-input').focus({ preventScroll: true }); }
+      focusInput();
     });
   }
 
@@ -304,6 +313,8 @@
     $('wa-link').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(c.waText);
     renderChips(); renderTiles(); renderStatic();
     if (state.history.length === 0) { resetChat(); }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-title]'), function (el) { var k = el.getAttribute('data-i18n-title'); if (c[k] !== undefined) { el.title = c[k]; } });
+    setView(state.view);
   }
 
   /* ---------- luces de los bordes ---------- */
@@ -353,14 +364,16 @@
     $('theme-btn').addEventListener('click', function () { state.theme = state.theme === 'dark' ? 'light' : 'dark'; applyTheme(); });
     $('hero-form').addEventListener('submit', function (e) { e.preventDefault(); send($('hero-input').value); });
     $('panel-form').addEventListener('submit', function (e) { e.preventDefault(); send($('panel-input').value); });
-    $('panel-close').addEventListener('click', closePanel);
-    $('chat-fab').addEventListener('click', openPanel);
+    $('panel-close').addEventListener('click', function () { setView('closed'); $('chat-fab').focus({ preventScroll: true }); });
+    $('panel-min').addEventListener('click', function () { setView(state.view === 'min' ? 'small' : 'min'); focusInput(); });
+    $('panel-max').addEventListener('click', function () { setView(state.view === 'max' ? 'small' : 'max'); focusInput(); });
+    $('chat-fab').addEventListener('click', function () { setView('small'); focusInput(); });
     $('panel-new').addEventListener('click', function () { if (!state.busy) { resetChat(); $('hero-log').innerHTML = ''; addMsg('bot', COPY[state.lang].chatHello, 'hero-log'); } });
     var menuBtn = $('menu-btn'), nav = $('main-nav');
     function setMenu(open) { nav.classList.toggle('is-open', open); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
     menuBtn.addEventListener('click', function () { setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
     Array.prototype.forEach.call(nav.querySelectorAll('a'), function (a) { a.addEventListener('click', function () { setMenu(false); }); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setMenu(false); if (!$('chat-panel').hidden) { closePanel(); } } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setMenu(false); if (state.view === 'small' || state.view === 'max') { setView('min'); } } });
   }
 
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }

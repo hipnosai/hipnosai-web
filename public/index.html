@@ -162,12 +162,21 @@
     </div>
   </footer>
 </div>
-<aside class="chat-panel" id="chat-panel" aria-labelledby="panel-title" hidden>
+<aside class="chat-panel is-small" id="chat-panel" aria-labelledby="panel-title" hidden>
   <div class="panel-head">
     <svg width="29" height="21" viewBox="300 232 420 302" aria-hidden="true"><defs><linearGradient id="lg3" gradientUnits="userSpaceOnUse" x1="590" y1="244" x2="312" y2="530"><stop offset="0" stop-color="#3EBBF7"></stop><stop offset="1" stop-color="#1D6DE5"></stop></linearGradient></defs><g fill="none" stroke="#3EB6F4" stroke-width="10" stroke-linejoin="round"><path d="M580 328H628L660 272"></path><path d="M580 368H664"></path><path d="M580 406H628L660 462"></path></g><rect x="318" y="242" width="274" height="234" rx="58" fill="url(#lg3)"></rect><path d="M318 420V530L382 470Z" fill="url(#lg3)"></path><rect x="365" y="310" width="184" height="116" rx="58" fill="#0D1729"></rect><rect x="414" y="338" width="24" height="58" rx="12" fill="#3FE2E8"></rect><rect x="487" y="338" width="24" height="58" rx="12" fill="#3FE2E8"></rect><g fill="#3EB6F4"><circle cx="668" cy="264" r="25"></circle><circle cx="688" cy="368" r="25"></circle><circle cx="668" cy="472" r="25"></circle></g><g fill="#FFFFFF"><circle cx="668" cy="264" r="17"></circle><circle cx="688" cy="368" r="17"></circle><circle cx="668" cy="472" r="17"></circle></g><g fill="#0D1729"><circle cx="668" cy="264" r="12.5"></circle><circle cx="688" cy="368" r="12.5"></circle><circle cx="668" cy="472" r="12.5"></circle></g></svg>
     <h2 id="panel-title" data-i18n="chatTitle">Hipnos AI assistant</h2>
-    <button type="button" class="panel-btn" id="panel-new" data-i18n="chatNew">New chat</button>
-    <button type="button" class="panel-btn panel-close" id="panel-close" aria-label="Close chat" data-i18n-aria="chatClose">
+    <button type="button" class="win-btn" id="panel-new" aria-label="New chat" title="New chat" data-i18n-aria="chatNew" data-i18n-title="chatNew">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>
+    </button>
+    <button type="button" class="win-btn" id="panel-min" aria-label="Minimize" title="Minimize" data-i18n-aria="chatMin" data-i18n-title="chatMin">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 18h14"></path></svg>
+    </button>
+    <button type="button" class="win-btn" id="panel-max" aria-label="Expand" title="Expand" data-i18n-aria="chatMax" data-i18n-title="chatMax">
+      <svg class="ico-max" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path></svg>
+      <svg class="ico-restore" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"></path></svg>
+    </button>
+    <button type="button" class="win-btn" id="panel-close" aria-label="Close chat" title="Close chat" data-i18n-aria="chatClose" data-i18n-title="chatClose">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
     </button>
   </div>
@@ -179,9 +188,8 @@
   </form>
   <p class="chat-note"><span data-i18n="chatNote">AI answers may contain mistakes. Messages are processed by our AI provider; please don’t share sensitive data.</span> <a href="/privacy.html" data-i18n="privacyLink">Privacy</a></p>
 </aside>
-<button type="button" class="chat-fab" id="chat-fab" hidden>
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.5 8.5 0 1 1 21 11.5z"></path></svg>
-  <span data-i18n="chatOpen">Open chat</span>
+<button type="button" class="chat-fab" id="chat-fab" aria-label="Open chat" title="Open chat" data-i18n-aria="chatOpen" data-i18n-title="chatOpen">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.5 8.5 0 1 1 21 11.5z"></path><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"></path></svg>
 </button>
 <script src="/js/main.js" defer></script>
 </body>
