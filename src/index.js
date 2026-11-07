@@ -3,6 +3,10 @@
 // Claves en CASCADA: si un proveedor falla, responde el siguiente con la misma conversación.
 // Las claves NUNCA van en el código: se guardan como secretos en Cloudflare (ver wrangler.jsonc).
 
+import { providersFrom, cascade } from './ia.js';
+import { handleTelegram, handleTelegramSetup } from './tienda/bot.js';
+import { handlePublic } from './tienda/publico.js';
+
 const SYSTEM_PROMPT = `You are the website assistant of Hipnos AI. Your job is to help visitors understand what Hipnos AI can build for their business and to guide them to contact the team.
 
 FACTS ABOUT HIPNOS AI (use only these; never invent anything else):
@@ -27,16 +31,6 @@ const MAX_MESSAGES = 14;
 const MAX_OLDER = 24;
 const MAX_CHARS = 800;
 const MAX_SUMMARY = 1200;
-const TIMEOUT_MS = 20000;
-
-// Orden de la cascada por defecto (se puede cambiar en wrangler.jsonc -> vars.AI_CASCADE).
-const DEFAULT_CASCADE = [
-  { name: 'groq-gpt-oss-120b', base: 'https://api.groq.com/openai/v1', model: 'openai/gpt-oss-120b', keys: ['GROQ_API_KEY', 'AI_API_KEY'], reasoning: 'low' },
-  { name: 'groq-gpt-oss-20b', base: 'https://api.groq.com/openai/v1', model: 'openai/gpt-oss-20b', keys: ['GROQ_API_KEY', 'AI_API_KEY'], reasoning: 'low' },
-  { name: 'cerebras-gpt-oss-120b', base: 'https://api.cerebras.ai/v1', model: 'gpt-oss-120b', keys: ['CEREBRAS_API_KEY'] },
-  { name: 'github-gpt-4.1-mini', base: 'https://models.github.ai/inference', model: 'openai/gpt-4.1-mini', keys: ['GITHUB_MODELS_TOKEN'], tokenParam: 'max_tokens' },
-  { name: 'groq-llama-3.1-8b', base: 'https://api.groq.com/openai/v1', model: 'llama-3.1-8b-instant', keys: ['GROQ_API_KEY', 'AI_API_KEY'] },
-];
 
 function json(data, status = 200, extra = {}) {
   return new Response(JSON.stringify(data), {
@@ -45,58 +39,11 @@ function json(data, status = 200, extra = {}) {
   });
 }
 
-function providersFrom(env) {
-  let cfg = env.AI_CASCADE;
-  if (typeof cfg === 'string') {
-    try { cfg = JSON.parse(cfg); } catch { cfg = null; }
-  }
-  const list = (cfg && Array.isArray(cfg.providers) && cfg.providers.length && cfg.providers) || DEFAULT_CASCADE;
-  return list
-    .map((p) => ({ ...p, key: (p.keys || []).map((k) => env[k]).find(Boolean) }))
-    .filter((p) => p.key && p.base && p.model);
-}
-
 function cleanMessages(raw, max) {
   return (Array.isArray(raw) ? raw : [])
     .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
     .slice(-max)
     .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_CHARS) }));
-}
-
-// Prueba cada proveedor en orden. Si uno falla (caído, sin cupo, clave mala, respuesta vacía), pasa al siguiente.
-async function cascade(providers, messages, maxTokens) {
-  let allRateLimited = true;
-  for (const p of providers) {
-    const payload = { model: p.model, messages, temperature: 0.4 };
-    payload[p.tokenParam || 'max_completion_tokens'] = maxTokens;
-    if (p.reasoning) payload.reasoning_effort = p.reasoning;
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
-    try {
-      const r = await fetch(p.base.replace(/\/+$/, '') + '/chat/completions', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json', authorization: 'Bearer ' + p.key },
-        body: JSON.stringify(payload),
-        signal: ctrl.signal,
-      });
-      if (!r.ok) {
-        if (r.status !== 429) allRateLimited = false;
-        console.warn('cascade_fail', p.name, r.status); // solo el estado, nunca el contenido
-        continue;
-      }
-      const data = await r.json();
-      const text = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-      if (text && String(text).trim()) return { text: String(text).trim(), via: p.name };
-      allRateLimited = false;
-      console.warn('cascade_empty', p.name);
-    } catch (e) {
-      allRateLimited = false;
-      console.warn('cascade_error', p.name, e && e.name);
-    } finally {
-      clearTimeout(timer);
-    }
-  }
-  return { error: allRateLimited ? 'rate_limited' : 'all_providers_failed' };
 }
 
 async function handleChat(request, env, url) {
@@ -149,6 +96,9 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === '/api/chat') return handleChat(request, env, url);
+    if (url.pathname === '/api/tg/webhook') return handleTelegram(request, env, url);
+    if (url.pathname === '/api/tg/setup') return handleTelegramSetup(request, env, url);
+    if (url.pathname.startsWith('/c/') || url.pathname.startsWith('/p/')) return handlePublic(request, env, url);
     if (url.pathname.startsWith('/api/')) return json({ error: 'not_found' }, 404);
     return env.ASSETS.fetch(request);
   },
