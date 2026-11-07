@@ -15,7 +15,8 @@
       chatNote: 'Las respuestas de la IA pueden tener errores. Los mensajes los procesa nuestro proveedor de IA; no compartas datos sensibles.',
       privacyLink: 'Privacidad', chipsLabel: 'Preguntas sugeridas',
       chatHello: '¡Hola! Soy el asistente de Hipnos AI. Pregúntame cómo un chatbot o un agente de IA puede ayudar a tu negocio.',
-      chatTyping: 'Escribiendo…',
+      chatTyping: 'Escribiendo…', chatNew: 'Nuevo chat', chatClose: 'Cerrar chat', chatOpen: 'Abrir chat',
+      chatMoved: 'Tu conversación sigue en el panel de la derecha.',
       chatErrNotConfigured: 'El asistente todavía no está conectado. Escríbenos por WhatsApp: https://wa.me/593983120422',
       chatErrBusy: 'Hay muchas consultas en este momento. Espera un minuto e inténtalo de nuevo.',
       chatErr: 'No pude responder ahora. Escríbenos por WhatsApp: https://wa.me/593983120422',
@@ -68,7 +69,8 @@
       chatNote: 'AI answers may contain mistakes. Messages are processed by our AI provider; please don’t share sensitive data.',
       privacyLink: 'Privacy', chipsLabel: 'Suggested questions',
       chatHello: 'Hi! I’m the Hipnos AI assistant. Ask me how an AI chatbot or agent can help your business.',
-      chatTyping: 'Typing…',
+      chatTyping: 'Typing…', chatNew: 'New chat', chatClose: 'Close chat', chatOpen: 'Open chat',
+      chatMoved: 'Your conversation continues in the panel on the right.',
       chatErrNotConfigured: 'The assistant isn’t connected yet. Message us on WhatsApp: https://wa.me/593983120422',
       chatErrBusy: 'Too many requests right now. Please wait a minute and try again.',
       chatErr: 'I couldn’t answer right now. Message us on WhatsApp: https://wa.me/593983120422',
@@ -134,8 +136,9 @@
   function icon(path, size) { return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + path + '"></path></svg>'; }
 
   // Siempre empieza en inglés y en modo claro (público principal: habla inglesa).
-  var state = { lang: 'en', theme: 'light', history: [], busy: false };
-  var MAX_HISTORY = 12;
+  var state = { lang: 'en', theme: 'light', history: [], summary: '', summarized: 0, busy: false };
+  // Memoria de la conversación: ventana de mensajes recientes + resumen acumulado de lo anterior.
+  var WINDOW = 10, MAX_UNSUMMARIZED = 14;
 
   /* ---------- tema ---------- */
   function applyTheme() {
@@ -164,8 +167,8 @@
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)\]])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
   }
-  function addMsg(kind, text) {
-    var log = $('chat-log');
+  function addMsg(kind, text, logId) {
+    var log = $(logId || 'panel-log');
     var div = document.createElement('div');
     div.className = 'msg ' + kind;
     div.innerHTML = linkify(esc(text));
@@ -174,9 +177,29 @@
     return div;
   }
   function resetChat() {
-    state.history = [];
-    $('chat-log').innerHTML = '';
-    addMsg('bot', COPY[state.lang].chatHello);
+    var c = COPY[state.lang];
+    state.history = []; state.summary = ''; state.summarized = 0;
+    $('panel-log').innerHTML = '';
+    $('hero-log').innerHTML = '';
+    addMsg('bot', c.chatHello, 'panel-log');
+    addMsg('bot', c.chatHello, 'hero-log');
+  }
+  function isDesktop() { return window.matchMedia('(min-width: 761px)').matches; }
+  function openPanel() {
+    var panel = $('chat-panel');
+    if (panel.hidden) {
+      panel.hidden = false;
+      document.body.classList.add('chat-open');
+      $('chat-fab').hidden = true;
+      var hero = $('hero-log');
+      if (!hero.querySelector('.moved')) { addMsg('bot moved', COPY[state.lang].chatMoved, 'hero-log'); }
+    }
+    if (isDesktop()) { $('panel-input').focus({ preventScroll: true }); }
+  }
+  function closePanel() {
+    $('chat-panel').hidden = true;
+    document.body.classList.remove('chat-open');
+    $('chat-fab').hidden = state.history.length === 0;
   }
   function renderChips() {
     var c = COPY[state.lang];
@@ -193,46 +216,54 @@
   }
   function setBusy(on) {
     state.busy = on;
-    $('chat-send').disabled = on;
-    $('chat-input').setAttribute('aria-busy', on ? 'true' : 'false');
+    $('panel-send').disabled = on;
+    $('hero-send').disabled = on;
   }
-  function send(text, fromForm) {
+  function send(text) {
     var c = COPY[state.lang];
     text = String(text || '').trim();
     if (!text || state.busy) { return; }
     if (text.length > 800) { text = text.slice(0, 800); }
+    openPanel();
     addMsg('user', text);
     state.history.push({ role: 'user', content: text });
-    state.history = state.history.slice(-MAX_HISTORY);
-    $('chat-input').value = '';
+    // Algoritmo de coherencia: lo que no cabe en la ventana se manda para resumir.
+    var pending = state.history.slice(state.summarized);
+    var older = [], windowMsgs = pending, foldTo = state.summarized;
+    if (pending.length > MAX_UNSUMMARIZED) {
+      older = pending.slice(0, pending.length - WINDOW);
+      windowMsgs = pending.slice(pending.length - WINDOW);
+      foldTo = state.history.length - WINDOW;
+    }
+    $('panel-input').value = '';
+    $('hero-input').value = '';
     setBusy(true);
     var typing = addMsg('bot typing', c.chatTyping);
     fetch('/api/chat', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ lang: state.lang, messages: state.history })
+      body: JSON.stringify({ lang: state.lang, summary: state.summary, older: older, messages: windowMsgs })
     }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (d) { return { status: r.status, data: d }; });
     }).then(function (res) {
       typing.remove();
       if (res.status === 200 && res.data && res.data.reply) {
+        if (typeof res.data.summary === 'string') { state.summary = res.data.summary; state.summarized = foldTo; }
         addMsg('bot', res.data.reply);
         state.history.push({ role: 'assistant', content: res.data.reply });
-        state.history = state.history.slice(-MAX_HISTORY);
-      } else if (res.data && res.data.error === 'not_configured') {
-        addMsg('error', c.chatErrNotConfigured);
-      } else if (res.status === 429) {
-        addMsg('error', c.chatErrBusy);
       } else {
-        addMsg('error', c.chatErr);
+        state.history.pop(); // el mensaje sin respuesta no entra en la memoria
+        if (res.data && res.data.error === 'not_configured') { addMsg('error', c.chatErrNotConfigured); }
+        else if (res.status === 429) { addMsg('error', c.chatErrBusy); }
+        else { addMsg('error', c.chatErr); }
       }
     }).catch(function () {
       typing.remove();
+      state.history.pop();
       addMsg('error', c.chatErr);
     }).then(function () {
       setBusy(false);
-      // En PC devuelve el cursor al cuadro de texto sin mover la página; en celular no, para no abrir el teclado solo.
-      if (fromForm && window.matchMedia('(min-width: 761px)').matches) { $('chat-input').focus({ preventScroll: true }); }
+      if (isDesktop() && !$('chat-panel').hidden) { $('panel-input').focus({ preventScroll: true }); }
     });
   }
 
@@ -271,7 +302,8 @@
     $('lang-es').setAttribute('aria-pressed', state.lang === 'es' ? 'true' : 'false');
     $('lang-en').setAttribute('aria-pressed', state.lang === 'en' ? 'true' : 'false');
     $('wa-link').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(c.waText);
-    renderChips(); renderTiles(); renderStatic(); resetChat();
+    renderChips(); renderTiles(); renderStatic();
+    if (state.history.length === 0) { resetChat(); }
   }
 
   /* ---------- luces de los bordes ---------- */
@@ -319,12 +351,16 @@
     $('lang-es').addEventListener('click', function () { if (state.lang !== 'es') { state.lang = 'es'; applyLang(); } });
     $('lang-en').addEventListener('click', function () { if (state.lang !== 'en') { state.lang = 'en'; applyLang(); } });
     $('theme-btn').addEventListener('click', function () { state.theme = state.theme === 'dark' ? 'light' : 'dark'; applyTheme(); });
-    $('chat-form').addEventListener('submit', function (e) { e.preventDefault(); send($('chat-input').value, true); });
+    $('hero-form').addEventListener('submit', function (e) { e.preventDefault(); send($('hero-input').value); });
+    $('panel-form').addEventListener('submit', function (e) { e.preventDefault(); send($('panel-input').value); });
+    $('panel-close').addEventListener('click', closePanel);
+    $('chat-fab').addEventListener('click', openPanel);
+    $('panel-new').addEventListener('click', function () { if (!state.busy) { resetChat(); $('hero-log').innerHTML = ''; addMsg('bot', COPY[state.lang].chatHello, 'hero-log'); } });
     var menuBtn = $('menu-btn'), nav = $('main-nav');
     function setMenu(open) { nav.classList.toggle('is-open', open); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
     menuBtn.addEventListener('click', function () { setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
     Array.prototype.forEach.call(nav.querySelectorAll('a'), function (a) { a.addEventListener('click', function () { setMenu(false); }); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setMenu(false); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setMenu(false); if (!$('chat-panel').hidden) { closePanel(); } } });
   }
 
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
