@@ -11,33 +11,171 @@
         "en": "Designs for your page’s feed, ready to publish."
       },
       "link": "/design/",
-      "images": []
+      "images": [
+        {
+          "src": "/galeria/facebook/promo-descuentos.webp",
+          "alt": {
+            "es": "Post de promoción: descuentos del 10% al 50% según el servicio",
+            "en": "Promotion post: 10% to 50% off depending on the service"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-01.webp",
+          "alt": {
+            "es": "Post: chatbots de WhatsApp con IA",
+            "en": "Post: AI WhatsApp chatbots"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-02.webp",
+          "alt": {
+            "es": "Post: agentes de IA con tus documentos",
+            "en": "Post: AI agents with your documents"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-03.webp",
+          "alt": {
+            "es": "Post: páginas web y landing pages",
+            "en": "Post: websites and landing pages"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-04.webp",
+          "alt": {
+            "es": "Post: apps y herramientas a medida",
+            "en": "Post: custom apps and tools"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-05.webp",
+          "alt": {
+            "es": "Post: automatizaciones con n8n y Python",
+            "en": "Post: automations with n8n and Python"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-06.webp",
+          "alt": {
+            "es": "Post: Excel y sistemas a medida",
+            "en": "Post: custom Excel and systems"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-07.webp",
+          "alt": {
+            "es": "Post: listas de clientes potenciales con IA",
+            "en": "Post: AI-built lead lists"
+          },
+          "w": 1080,
+          "h": 1350
+        }
+      ]
     },
     {
-      "id": "ia",
+      "id": "plataformas",
       "title": {
-        "es": "Imágenes con IA",
-        "en": "AI images"
+        "es": "Portadas para Fiverr, Freelancer y Upwork",
+        "en": "Covers for Fiverr, Freelancer and Upwork"
       },
       "desc": {
-        "es": "Imágenes creadas con inteligencia artificial para tu marca.",
-        "en": "Images created with artificial intelligence for your brand."
+        "es": "Imágenes de presentación para vender tus servicios en plataformas freelance.",
+        "en": "Showcase images to sell your services on freelance platforms."
       },
       "link": null,
-      "images": []
+      "images": [
+        {
+          "src": "/galeria/plataformas/agentes-ia.webp",
+          "alt": {
+            "es": "Portada: agentes de IA a medida",
+            "en": "Cover: custom AI agents"
+          },
+          "w": 1280,
+          "h": 769
+        },
+        {
+          "src": "/galeria/plataformas/kit-de-marca.webp",
+          "alt": {
+            "es": "Portada: kit de marca con IA",
+            "en": "Cover: AI brand kit"
+          },
+          "w": 1280,
+          "h": 769
+        },
+        {
+          "src": "/galeria/plataformas/promocion.webp",
+          "alt": {
+            "es": "Portada: promoción del 10% al 50%",
+            "en": "Cover: 10% to 50% off promotion"
+          },
+          "w": 1280,
+          "h": 769
+        }
+      ]
     },
     {
-      "id": "promociones",
+      "id": "marca",
       "title": {
-        "es": "Promociones y ofertas",
-        "en": "Promotions and offers"
+        "es": "Identidad de marca",
+        "en": "Brand identity"
       },
       "desc": {
-        "es": "Artes para anunciar descuentos y temporadas.",
-        "en": "Artwork to announce discounts and seasons."
+        "es": "Logo, portada de Facebook y banner de LinkedIn.",
+        "en": "Logo, Facebook cover and LinkedIn banner."
       },
       "link": null,
-      "images": []
+      "images": [
+        {
+          "src": "/galeria/marca/logo.webp",
+          "alt": {
+            "es": "Logo de Hipnos AI",
+            "en": "Hipnos AI logo"
+          },
+          "w": 1000,
+          "h": 1000
+        },
+        {
+          "src": "/galeria/marca/portada-facebook.webp",
+          "alt": {
+            "es": "Portada de Facebook de Hipnos AI",
+            "en": "Hipnos AI Facebook cover"
+          },
+          "w": 1600,
+          "h": 702
+        },
+        {
+          "src": "/galeria/marca/logo-horizontal.webp",
+          "alt": {
+            "es": "Logo horizontal de Hipnos AI",
+            "en": "Hipnos AI horizontal logo"
+          },
+          "w": 1600,
+          "h": 500
+        },
+        {
+          "src": "/galeria/marca/banner-linkedin.webp",
+          "alt": {
+            "es": "Banner de LinkedIn de Hipnos AI",
+            "en": "Hipnos AI LinkedIn banner"
+          },
+          "w": 1584,
+          "h": 396
+        }
+      ]
     }
   ]
 }

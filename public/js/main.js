@@ -23,7 +23,7 @@
       chips: ['¿Qué puede hacer un chatbot por mi negocio?', '¿Cómo es el proceso?', '¿Funciona en WhatsApp?', '¿Cómo pido una propuesta?'],
       createTitle: '¿Qué podemos crear hoy?',
       ready: 'Disponible', soonShort: 'Próximamente',
-      galPrev: 'Anterior', galNext: 'Siguiente', galGo: 'Ir a la imagen', galSee: 'Ver el servicio',
+      galPrev: 'Anterior', galNext: 'Siguiente', galGo: 'Ir a la imagen', galSee: 'Ver el servicio', galZoom: 'Ampliar', galClose: 'Cerrar',
       servicesTitle: 'Lo que construimos', servicesLead: 'Empezamos por lo que más piden los negocios: atender y vender por chat sin depender de horarios.',
       available: 'Disponible', soon: 'Próximamente',
       sChat: 'Chatbots y agentes de IA', sChatT: 'Un asistente entrenado con la información de tu negocio que atiende a tus clientes en tu página web y en WhatsApp.',
@@ -84,7 +84,7 @@
       chips: ['What can an AI chatbot do for my business?', 'How does the process work?', 'Does it work on WhatsApp?', 'How do I get a proposal?'],
       createTitle: 'What can we build today?',
       ready: 'Available', soonShort: 'Coming soon',
-      galPrev: 'Previous', galNext: 'Next', galGo: 'Go to image', galSee: 'See the service',
+      galPrev: 'Previous', galNext: 'Next', galGo: 'Go to image', galSee: 'See the service', galZoom: 'Enlarge', galClose: 'Close',
       servicesTitle: 'What we build', servicesLead: 'We start with what businesses ask for most: answering and selling over chat, around the clock.',
       available: 'Available', soon: 'Coming soon',
       sChat: 'AI chatbots and agents', sChatT: 'An assistant trained on your business information that serves your customers on your website and on WhatsApp.',
@@ -204,8 +204,8 @@
       var n = g.images.length;
       var slides = g.images.map(function (im, i) {
         var size = im.w && im.h ? ' width="' + Number(im.w) + '" height="' + Number(im.h) + '"' : '';
-        return '<li class="gal-slide" aria-label="' + (i + 1) + ' / ' + n + '"><img src="' + esc(im.src) + '" alt="' + esc(pick(im.alt)) + '"' + size +
-          ' loading="' + (i === 0 ? 'eager' : 'lazy') + '" decoding="async"></li>';
+        return '<li class="gal-slide" aria-label="' + (i + 1) + ' / ' + n + '"><button type="button" class="gal-zoom" data-i="' + i + '" aria-label="' + esc(c.galZoom + ': ' + pick(im.alt)) + '">' +
+          '<img src="' + esc(im.src) + '" alt="' + esc(pick(im.alt)) + '"' + size + ' loading="' + (i === 0 ? 'eager' : 'lazy') + '" decoding="async"></button></li>';
       }).join('');
       var nav = n > 1
         ? '<button type="button" class="gal-nav gal-prev" aria-label="' + esc(c.galPrev) + '">' + ARROW_L + '</button>' +
@@ -223,7 +223,62 @@
     }).join('');
     box.hidden = false;
     $('tiles').hidden = true;
-    Array.prototype.forEach.call(box.querySelectorAll('.gal-card'), wireCarousel);
+    Array.prototype.forEach.call(box.querySelectorAll('.gal-card'), function (card, gi) {
+      wireCarousel(card);
+      Array.prototype.forEach.call(card.querySelectorAll('.gal-zoom'), function (b) {
+        b.addEventListener('click', function () { openLightbox(gi, Number(b.getAttribute('data-i')), b); });
+      });
+    });
+  }
+
+  /* Visor a pantalla completa: flechas, Esc para cerrar, el foco vuelve a la foto. */
+  var lb = null;
+  function openLightbox(gi, i, opener) {
+    var g = gallery[gi]; var n = g.images.length; var c = COPY[state.lang];
+    if (!lb) {
+      lb = document.createElement('div');
+      lb.className = 'lb';
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.innerHTML = '<figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure>' +
+        '<button type="button" class="lb-btn lb-close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>' +
+        '<button type="button" class="lb-btn lb-prev">' + ARROW_L + '</button><button type="button" class="lb-btn lb-next">' + ARROW_R + '</button>';
+      document.body.appendChild(lb);
+      lb.addEventListener('click', function (e) { if (e.target === lb) { closeLightbox(); } });
+      lb.querySelector('.lb-close').addEventListener('click', closeLightbox);
+      lb.querySelector('.lb-prev').addEventListener('click', function () { showLb(lb.gi, lb.i - 1); });
+      lb.querySelector('.lb-next').addEventListener('click', function () { showLb(lb.gi, lb.i + 1); });
+      document.addEventListener('keydown', function (e) {
+        if (!lb || lb.hidden) { return; }
+        if (e.key === 'Escape') { closeLightbox(); }
+        if (e.key === 'ArrowRight') { showLb(lb.gi, lb.i + 1); }
+        if (e.key === 'ArrowLeft') { showLb(lb.gi, lb.i - 1); }
+      });
+    }
+    lb.opener = opener;
+    lb.setAttribute('aria-label', pick(g.title));
+    lb.querySelector('.lb-close').setAttribute('aria-label', c.galClose);
+    lb.querySelector('.lb-prev').setAttribute('aria-label', c.galPrev);
+    lb.querySelector('.lb-next').setAttribute('aria-label', c.galNext);
+    lb.querySelector('.lb-prev').hidden = lb.querySelector('.lb-next').hidden = n < 2;
+    lb.hidden = false;
+    document.body.classList.add('lb-open');
+    showLb(gi, i);
+    lb.querySelector('.lb-close').focus();
+  }
+  function showLb(gi, i) {
+    var g = gallery[gi]; var n = g.images.length;
+    i = (i + n) % n; lb.gi = gi; lb.i = i;
+    var im = g.images[i];
+    var img = lb.querySelector('.lb-img');
+    img.src = im.src; img.alt = pick(im.alt);
+    lb.querySelector('.lb-cap').textContent = pick(im.alt) + ' · ' + (i + 1) + ' / ' + n;
+  }
+  function closeLightbox() {
+    if (!lb) { return; }
+    lb.hidden = true;
+    document.body.classList.remove('lb-open');
+    if (lb.opener && document.body.contains(lb.opener)) { lb.opener.focus({ preventScroll: true }); }
   }
   function wireCarousel(card) {
     var track = card.querySelector('.gal-track');
