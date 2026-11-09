@@ -35,13 +35,46 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
         </button>
         <nav class="main-nav" id="main-nav" aria-label="Main menu" data-i18n-aria="navLabel">
-          <a href="#inicio" aria-current="page" data-i18n="nav1">Home</a>
-          <a href="/design/" data-i18n="navDesign">Design</a>
-          <a href="#servicios" data-i18n="nav2">AI Agents</a>
-          <a href="#servicios" data-i18n="nav3">Development</a>
-          <a href="#servicios" data-i18n="nav4">Automation</a>
-          <a href="#proceso" data-i18n="nav6">Solutions</a>
-          <a href="#preguntas" data-i18n="nav7">Resources</a>
+          <div class="nav-item is-current">
+            <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="menu-home"><span data-nav-i18n="navHome">Home</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+            <div class="nav-menu" id="menu-home">
+              <a class="nav-link" href="#inicio"><span class="nav-ico" style="--g1:#5AA8FF;--g2:#0650D6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5M5.5 10v10h13V10"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="mHome">Home page</span><span class="nav-d" data-nav-i18n="mHomeD">Back to the top</span></span></a>
+              <a class="nav-link" href="#nosotros"><span class="nav-ico" style="--g1:#6CC4FF;--g2:#1479D6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="mAbout">About us</span><span class="nav-d" data-nav-i18n="mAboutD">Who we are</span></span></a>
+              <a class="nav-link" href="#servicios"><span class="nav-ico" style="--g1:#8B7CFF;--g2:#4B3BD6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5h18V20H3zM8.5 7.5V4.5h7v3M3 12.5h18"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="mServices">Services</span><span class="nav-d" data-nav-i18n="mServicesD">What we build and design</span></span></a>
+              <a class="nav-link" href="#proceso"><span class="nav-ico" style="--g1:#3CCFCF;--g2:#0C8C99"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 6h2m4 0h8M5 12h2m4 0h8M5 18h2m4 0h8"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="mProcess">How we work</span><span class="nav-d" data-nav-i18n="mProcessD">From the first call to delivery</span></span></a>
+              <a class="nav-link" href="#preguntas"><span class="nav-ico" style="--g1:#7F95B8;--g2:#3A4F72"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.6 9.3a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1.1 1-1.1 1.7M12 16.5h.01"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="mFaq">FAQ</span><span class="nav-d" data-nav-i18n="mFaqD">Quick answers</span></span></a>
+              <a class="nav-link" href="#contacto"><span class="nav-ico" style="--g1:#3BE07F;--g2:#159947"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6h17v12h-17zM4 7l8 6 8-6"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="mContact">Contact us</span><span class="nav-d" data-nav-i18n="mContactD">WhatsApp or email</span></span></a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="menu-ai"><span data-nav-i18n="navAI">AI development</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+            <div class="nav-menu" id="menu-ai">
+              <a class="nav-link" href="#servicios"><span class="nav-ico" style="--g1:#5AA8FF;--g2:#0650D6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.5 8.5 0 1 1 21 11.5z"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="aiChat">AI chatbots and agents</span><span class="nav-d" data-nav-i18n="aiChatD">They serve your customers on your website and WhatsApp</span></span><span class="badge" data-nav-i18n="ok">Available</span></a>
+              <div class="nav-link is-soon"><span class="nav-ico" style="--g1:#8B7CFF;--g2:#4B3BD6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h11m0 0-3-3m3 3-3 3M20 17H9m0 0 3-3m-3 3 3 3"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="aiAuto">Process automation</span><span class="nav-d" data-nav-i18n="aiAutoD">Repetitive tasks that run on their own</span></span><span class="badge soft" data-nav-i18n="soon">Coming soon</span></div>
+              <div class="nav-link is-soon"><span class="nav-ico" style="--g1:#3CCFCF;--g2:#0C8C99"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v14H3zM3 9h18"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="aiWeb">Websites and apps</span><span class="nav-d" data-nav-i18n="aiWebD">Fast sites, ready to sell</span></span><span class="badge soft" data-nav-i18n="soon">Coming soon</span></div>
+              <div class="nav-link is-soon"><span class="nav-ico" style="--g1:#FF9B6A;--g2:#D6531F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10m6 10V4m6 16v-7m4 7H3"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="aiData">Data and dashboards</span><span class="nav-d" data-nav-i18n="aiDataD">Your numbers in clear dashboards</span></span><span class="badge soft" data-nav-i18n="soon">Coming soon</span></div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="menu-design"><span data-nav-i18n="navDesign">Graphic design</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+            <div class="nav-menu" id="menu-design">
+              <a class="nav-link" href="/design/"><span class="nav-ico" style="--g1:#5AA8FF;--g2:#0650D6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM9 10.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM20 15l-5-5L5 20"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="dFb">Facebook posts</span><span class="nav-d" data-nav-i18n="dFbD">With your logo, your colors and a clear message</span></span><span class="badge" data-nav-i18n="ok">Available</span></a>
+              <div class="nav-link is-soon"><span class="nav-ico" style="--g1:#FF7DB0;--g2:#D6336C"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM17.5 6.5h.01"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="dIg">Instagram posts</span><span class="nav-d" data-nav-i18n="dIgD">For your account’s feed</span></span><span class="badge soft" data-nav-i18n="soon">Coming soon</span></div>
+              <div class="nav-link is-soon"><span class="nav-ico" style="--g1:#8B7CFF;--g2:#4B3BD6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5h8a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-15a2 2 0 0 1 2-2zM10 5.5h4"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="dStories">Instagram and Facebook Stories</span><span class="nav-d" data-nav-i18n="dStoriesD">Full-screen vertical format</span></span><span class="badge soft" data-nav-i18n="soon">Coming soon</span></div>
+              <div class="nav-link is-soon"><span class="nav-ico" style="--g1:#7F95B8;--g2:#3A4F72"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4l14 16M19 4 5 20"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="dX">Posts for X</span><span class="nav-d" data-nav-i18n="dXD">Images for your posts</span></span><span class="badge soft" data-nav-i18n="soon">Coming soon</span></div>
+              <div class="nav-link is-soon"><span class="nav-ico" style="--g1:#FF9B6A;--g2:#D6531F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s7-6.8 7-12.2A7 7 0 0 0 5 9.3c0 5.4 7 12.2 7 12.2zM12 11.5a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4z"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="dPin">Pinterest pins</span><span class="nav-d" data-nav-i18n="dPinD">Vertical images for Pinterest</span></span><span class="badge soft" data-nav-i18n="soon">Coming soon</span></div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="menu-other"><span data-nav-i18n="navOther">More</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+            <div class="nav-menu" id="menu-other">
+              <a class="nav-link" href="#servicios"><span class="nav-ico" style="--g1:#5AA8FF;--g2:#0650D6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3zM9.5 10h.01M14.5 10h.01M9 20h6"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="oAgents">AI Agents</span></span></a>
+              <a class="nav-link" href="#servicios"><span class="nav-ico" style="--g1:#3CCFCF;--g2:#0C8C99"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l-4 3 4 3m8-6 4 3-4 3M14 5l-4 14"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="oDev">Development</span></span></a>
+              <a class="nav-link" href="#servicios"><span class="nav-ico" style="--g1:#7F95B8;--g2:#3A4F72"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM19.4 13a7.6 7.6 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7 7 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7.6 7.6 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7 7 0 0 0 1.7-1l2.4 1 2-3.4z"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="oAuto">Automation</span></span></a>
+              <a class="nav-link" href="#proceso"><span class="nav-ico" style="--g1:#8B7CFF;--g2:#4B3BD6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5a2 2 0 0 1 4 0V5h4v4h1.5a2 2 0 0 1 0 4H18v6H5v-6h1.5a2 2 0 0 0 0-4H5V5h5z"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="oSolutions">Solutions</span></span></a>
+              <a class="nav-link" href="#preguntas"><span class="nav-ico" style="--g1:#FF9B6A;--g2:#D6531F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"></path></svg></span><span class="nav-txt"><span class="nav-t" data-nav-i18n="oResources">Resources</span></span></a>
+            </div>
+          </div>
         </nav>
         <div class="header-tools">
           <div class="lang-group" role="group" aria-label="Language" data-i18n-aria="langLabel">
@@ -88,6 +121,30 @@
         <ul class="tiles" id="tiles"></ul>
       </div>
     </section>
+
+  <section class="section alt" id="nosotros">
+    <div class="section-in about">
+      <div class="about-copy">
+        <h2 class="h2" data-i18n="aboutTitle">About us</h2>
+        <p class="lead" data-i18n="aboutText">Hipnos AI is based in Quito, Ecuador, and is run by Josue Villacís. We build AI chatbots and agents and design for social media, and we work remotely with businesses in English and Spanish.</p>
+        <p class="lead" data-i18n="aboutTag">You dream it. We build it with AI.</p>
+      </div>
+      <ul class="about-facts">
+        <li>
+          <span class="nav-ico" style="--g1:#5AA8FF;--g2:#0650D6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s7-6.8 7-12.2A7 7 0 0 0 5 9.3c0 5.4 7 12.2 7 12.2zM12 11.5a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4z"></path></svg></span>
+          <span><strong data-i18n="aboutF1">Quito, Ecuador</strong><span data-i18n="aboutF1d">Where we are</span></span>
+        </li>
+        <li>
+          <span class="nav-ico" style="--g1:#3CCFCF;--g2:#0C8C99"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg></span>
+          <span><strong data-i18n="aboutF2">English and Spanish</strong><span data-i18n="aboutF2d">The languages we work in</span></span>
+        </li>
+        <li>
+          <span class="nav-ico" style="--g1:#8B7CFF;--g2:#4B3BD6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H4zM2 19h20"></path></svg></span>
+          <span><strong data-i18n="aboutF3">100% online</strong><span data-i18n="aboutF3d">We work remotely, wherever you are</span></span>
+        </li>
+      </ul>
+    </div>
+  </section>
 
   <section class="section" id="servicios">
     <div class="section-in services">
@@ -203,6 +260,7 @@
 <button type="button" class="chat-fab" id="chat-fab" aria-label="Open chat" title="Open chat" data-i18n-aria="chatOpen" data-i18n-title="chatOpen">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.5 8.5 0 1 1 21 11.5z"></path><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"></path></svg>
 </button>
+<script src="/js/nav.js" defer></script>
 <script src="/js/main.js" defer></script>
 </body>
 </html>
