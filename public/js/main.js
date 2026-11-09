@@ -148,7 +148,12 @@
   function icon(path, size) { return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + path + '"></path></svg>'; }
 
   // Siempre empieza en inglés y en modo claro (público principal: habla inglesa).
-  var state = { lang: 'en', theme: 'light', history: [], summary: '', summarized: 0, busy: false, view: 'closed' };
+  // Idioma elegido por el visitante: se guarda en su navegador y se usa en todas las páginas.
+  var LANG_KEY = 'hipnos-lang';
+  function savedLang() { try { return localStorage.getItem(LANG_KEY) === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } }
+  function saveLang(l) { try { localStorage.setItem(LANG_KEY, l); } catch (e) { /* sin almacenamiento: solo esta página */ } }
+
+  var state = { lang: savedLang(), theme: 'light', history: [], summary: '', summarized: 0, busy: false, view: 'closed' };
   // Memoria de la conversación: ventana de mensajes recientes + resumen acumulado de lo anterior.
   var WINDOW = 10, MAX_UNSUMMARIZED = 14;
 
@@ -369,10 +374,11 @@
   function init() {
     applyTheme();
     applyLang();
+    document.documentElement.classList.remove('lang-wait');
     paintLights('sparks-l', 1234);
     paintLights('sparks-r', 98765);
-    $('lang-es').addEventListener('click', function () { if (state.lang !== 'es') { state.lang = 'es'; applyLang(); } });
-    $('lang-en').addEventListener('click', function () { if (state.lang !== 'en') { state.lang = 'en'; applyLang(); } });
+    $('lang-es').addEventListener('click', function () { if (state.lang !== 'es') { state.lang = 'es'; saveLang('es'); applyLang(); } });
+    $('lang-en').addEventListener('click', function () { if (state.lang !== 'en') { state.lang = 'en'; saveLang('en'); applyLang(); } });
     $('theme-btn').addEventListener('click', function () { state.theme = state.theme === 'dark' ? 'light' : 'dark'; applyTheme(); });
     $('hero-form').addEventListener('submit', function (e) { e.preventDefault(); send($('hero-input').value); });
     $('panel-form').addEventListener('submit', function (e) { e.preventDefault(); send($('panel-input').value); });

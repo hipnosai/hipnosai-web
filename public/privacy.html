@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>try{if(localStorage.getItem("hipnos-lang")==="es"){var d=document.documentElement;d.lang="es";d.classList.add("lang-wait");setTimeout(function(){d.classList.remove("lang-wait")},1500)}}catch(e){}</script>
+<style>.lang-wait body{visibility:hidden}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy — Hipnos AI</title>
 <meta name="description" content="How the Hipnos AI website and assistant handle your information.">
 <link rel="icon" href="/logo/hipnos-ai-icono.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/css/styles.css?v=20261109c">
+<link rel="stylesheet" href="/css/styles.css?v=20261109d">
 <style>
   .legal { max-width: 760px; margin: 0 auto; padding: 48px 20px 80px; color: var(--ink); font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.65; }
   .legal h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: -0.03em; margin: 24px 0 8px; }
@@ -15,11 +17,18 @@
   .legal hr { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }
   .legal .back { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; }
   .legal .updated { color: var(--muted); font-size: 15px; }
+  .legal-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 </style>
 </head>
 <body>
 <main class="legal">
-  <a class="back" href="/">← Hipnos AI</a>
+  <div class="legal-top">
+    <a class="back" href="/">← Hipnos AI</a>
+    <div class="lang-group" role="group" aria-label="Language / Idioma">
+      <button type="button" data-l="en" aria-pressed="true" lang="en">EN</button>
+      <button type="button" data-l="es" aria-pressed="false" lang="es">ES</button>
+    </div>
+  </div>
 
   <article lang="en">
     <h1>Privacy</h1>
@@ -61,5 +70,23 @@
     <p>Puedes pedirnos qué información tenemos sobre ti, o pedir que la corrijamos o eliminemos, escribiendo a <a href="mailto:edimatus2016@gmail.com">edimatus2016@gmail.com</a>.</p>
   </article>
 </main>
+<script>
+(function () {
+  var KEY = "hipnos-lang";
+  function get() { try { return localStorage.getItem(KEY) === "es" ? "es" : "en"; } catch (e) { return "en"; } }
+  function show(l) {
+    document.documentElement.lang = l;
+    document.title = l === "es" ? "Privacidad — Hipnos AI" : "Privacy — Hipnos AI";
+    Array.prototype.forEach.call(document.querySelectorAll("article[lang]"), function (a) { a.hidden = a.getAttribute("lang") !== l; });
+    Array.prototype.forEach.call(document.querySelectorAll(".legal hr"), function (h) { h.hidden = true; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-l]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-l") === l ? "true" : "false"); });
+    document.documentElement.classList.remove("lang-wait");
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-l]"), function (b) {
+    b.addEventListener("click", function () { var l = b.getAttribute("data-l"); try { localStorage.setItem(KEY, l); } catch (e) {} show(l); });
+  });
+  show(get());
+})();
+</script>
 </body>
 </html>

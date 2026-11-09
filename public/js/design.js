@@ -86,7 +86,12 @@
     }
   };
 
-  var state = { lang: 'en', theme: 'light' };
+  // Idioma elegido por el visitante: se guarda en su navegador y se usa en todas las páginas.
+  var LANG_KEY = 'hipnos-lang';
+  function savedLang() { try { return localStorage.getItem(LANG_KEY) === 'es' ? 'es' : 'en'; } catch (e) { return 'en'; } }
+  function saveLang(l) { try { localStorage.setItem(LANG_KEY, l); } catch (e) { /* sin almacenamiento: solo esta página */ } }
+
+  var state = { lang: savedLang(), theme: 'light' };
 
   function $(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
@@ -123,8 +128,9 @@
   function init() {
     applyTheme();
     applyLang();
-    $('lang-es').addEventListener('click', function () { if (state.lang !== 'es') { state.lang = 'es'; applyLang(); } });
-    $('lang-en').addEventListener('click', function () { if (state.lang !== 'en') { state.lang = 'en'; applyLang(); } });
+    document.documentElement.classList.remove('lang-wait');
+    $('lang-es').addEventListener('click', function () { if (state.lang !== 'es') { state.lang = 'es'; saveLang('es'); applyLang(); } });
+    $('lang-en').addEventListener('click', function () { if (state.lang !== 'en') { state.lang = 'en'; saveLang('en'); applyLang(); } });
     $('theme-btn').addEventListener('click', function () { state.theme = state.theme === 'dark' ? 'light' : 'dark'; applyTheme(); });
     var menuBtn = $('menu-btn'), nav = $('main-nav');
     function setMenu(open) { nav.classList.toggle('is-open', open); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
