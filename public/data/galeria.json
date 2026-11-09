@@ -1,0 +1,43 @@
+{
+  "carousels": [
+    {
+      "id": "facebook",
+      "title": {
+        "es": "Posts para Facebook",
+        "en": "Facebook posts"
+      },
+      "desc": {
+        "es": "Diseños para el muro de tu página, listos para publicar.",
+        "en": "Designs for your page’s feed, ready to publish."
+      },
+      "link": "/design/",
+      "images": []
+    },
+    {
+      "id": "ia",
+      "title": {
+        "es": "Imágenes con IA",
+        "en": "AI images"
+      },
+      "desc": {
+        "es": "Imágenes creadas con inteligencia artificial para tu marca.",
+        "en": "Images created with artificial intelligence for your brand."
+      },
+      "link": null,
+      "images": []
+    },
+    {
+      "id": "promociones",
+      "title": {
+        "es": "Promociones y ofertas",
+        "en": "Promotions and offers"
+      },
+      "desc": {
+        "es": "Artes para anunciar descuentos y temporadas.",
+        "en": "Artwork to announce discounts and seasons."
+      },
+      "link": null,
+      "images": []
+    }
+  ]
+}

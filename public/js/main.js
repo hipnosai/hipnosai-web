@@ -23,6 +23,7 @@
       chips: ['¿Qué puede hacer un chatbot por mi negocio?', '¿Cómo es el proceso?', '¿Funciona en WhatsApp?', '¿Cómo pido una propuesta?'],
       createTitle: '¿Qué podemos crear hoy?',
       ready: 'Disponible', soonShort: 'Próximamente',
+      galPrev: 'Anterior', galNext: 'Siguiente', galGo: 'Ir a la imagen', galSee: 'Ver el servicio',
       servicesTitle: 'Lo que construimos', servicesLead: 'Empezamos por lo que más piden los negocios: atender y vender por chat sin depender de horarios.',
       available: 'Disponible', soon: 'Próximamente',
       sChat: 'Chatbots y agentes de IA', sChatT: 'Un asistente entrenado con la información de tu negocio que atiende a tus clientes en tu página web y en WhatsApp.',
@@ -83,6 +84,7 @@
       chips: ['What can an AI chatbot do for my business?', 'How does the process work?', 'Does it work on WhatsApp?', 'How do I get a proposal?'],
       createTitle: 'What can we build today?',
       ready: 'Available', soonShort: 'Coming soon',
+      galPrev: 'Previous', galNext: 'Next', galGo: 'Go to image', galSee: 'See the service',
       servicesTitle: 'What we build', servicesLead: 'We start with what businesses ask for most: answering and selling over chat, around the clock.',
       available: 'Available', soon: 'Coming soon',
       sChat: 'AI chatbots and agents', sChatT: 'An assistant trained on your business information that serves your customers on your website and on WhatsApp.',
@@ -175,6 +177,85 @@
         '<span class="tile-text"><span>' + esc(row[0]) + '</span><span class="tile-status' + (ready ? ' ready' : '') + '">' + esc(ready ? c.ready : c.soonShort) + '</span></span>' +
         '</a></li>';
     }).join('');
+  }
+
+  /* ---------- galería: tres carruseles con trabajos reales (datos en /data/galeria.json) ---------- */
+  var gallery = null;
+  var ARROW_L = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
+  var ARROW_R = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>';
+  function pick(o) { return o ? (o[state.lang] || o.en || o.es || '') : ''; }
+  function loadGallery() {
+    fetch('/data/galeria.json', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !Array.isArray(d.carousels)) { return; }
+        // Solo se muestran los carruseles que ya tienen fotos reales.
+        gallery = d.carousels.filter(function (g) { return g && Array.isArray(g.images) && g.images.length; }).slice(0, 3);
+        renderGallery();
+      })
+      .catch(function () { /* sin galería: quedan los recuadros de siempre */ });
+  }
+  function renderGallery() {
+    var box = $('gallery');
+    if (!box) { return; }
+    if (!gallery || !gallery.length) { box.hidden = true; $('tiles').hidden = false; return; }
+    var c = COPY[state.lang];
+    box.innerHTML = gallery.map(function (g) {
+      var n = g.images.length;
+      var slides = g.images.map(function (im, i) {
+        var size = im.w && im.h ? ' width="' + Number(im.w) + '" height="' + Number(im.h) + '"' : '';
+        return '<li class="gal-slide" aria-label="' + (i + 1) + ' / ' + n + '"><img src="' + esc(im.src) + '" alt="' + esc(pick(im.alt)) + '"' + size +
+          ' loading="' + (i === 0 ? 'eager' : 'lazy') + '" decoding="async"></li>';
+      }).join('');
+      var nav = n > 1
+        ? '<button type="button" class="gal-nav gal-prev" aria-label="' + esc(c.galPrev) + '">' + ARROW_L + '</button>' +
+          '<button type="button" class="gal-nav gal-next" aria-label="' + esc(c.galNext) + '">' + ARROW_R + '</button>'
+        : '';
+      var dots = n > 1 ? g.images.map(function (im, i) {
+        return '<button type="button" class="gal-dot" data-i="' + i + '" aria-label="' + esc(c.galGo) + ' ' + (i + 1) + '"' + (i === 0 ? ' aria-current="true"' : '') + '></button>';
+      }).join('') : '';
+      return '<article class="gal-card" aria-roledescription="carousel" aria-label="' + esc(pick(g.title)) + '">' +
+        '<div class="gal-view"><ul class="gal-track" tabindex="0">' + slides + '</ul>' + nav + '</div>' +
+        '<div class="gal-foot"><div class="gal-dots">' + dots + '</div><span class="gal-count" aria-live="polite">1 / ' + n + '</span></div>' +
+        '<h3>' + esc(pick(g.title)) + '</h3><p>' + esc(pick(g.desc)) + '</p>' +
+        (g.link ? '<a class="gal-link" href="' + esc(g.link) + '">' + esc(c.galSee) + ' →</a>' : '') +
+        '</article>';
+    }).join('');
+    box.hidden = false;
+    $('tiles').hidden = true;
+    Array.prototype.forEach.call(box.querySelectorAll('.gal-card'), wireCarousel);
+  }
+  function wireCarousel(card) {
+    var track = card.querySelector('.gal-track');
+    var dots = card.querySelectorAll('.gal-dot');
+    var count = card.querySelector('.gal-count');
+    var n = track.children.length;
+    var current = 0;
+    var smooth = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    function go(i) {
+      i = (i + n) % n;
+      track.scrollTo({ left: i * track.clientWidth, behavior: smooth });
+    }
+    function mark(i) {
+      if (i === current) { return; }
+      current = i;
+      Array.prototype.forEach.call(dots, function (d, k) { if (k === i) { d.setAttribute('aria-current', 'true'); } else { d.removeAttribute('aria-current'); } });
+      count.textContent = (i + 1) + ' / ' + n;
+    }
+    var ticking = false;
+    track.addEventListener('scroll', function () {
+      if (ticking) { return; }
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; mark(Math.round(track.scrollLeft / Math.max(1, track.clientWidth))); });
+    });
+    var prev = card.querySelector('.gal-prev'), next = card.querySelector('.gal-next');
+    if (prev) { prev.addEventListener('click', function () { go(current - 1); }); }
+    if (next) { next.addEventListener('click', function () { go(current + 1); }); }
+    Array.prototype.forEach.call(dots, function (d) { d.addEventListener('click', function () { go(Number(d.getAttribute('data-i'))); }); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+    });
   }
 
   /* ---------- chat ---------- */
@@ -328,7 +409,7 @@
     $('lang-es').setAttribute('aria-pressed', state.lang === 'es' ? 'true' : 'false');
     $('lang-en').setAttribute('aria-pressed', state.lang === 'en' ? 'true' : 'false');
     $('wa-link').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(c.waText);
-    renderChips(); renderTiles(); renderStatic();
+    renderChips(); renderTiles(); renderGallery(); renderStatic();
     if (state.history.length === 0) { resetChat(); }
     Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-title]'), function (el) { var k = el.getAttribute('data-i18n-title'); if (c[k] !== undefined) { el.title = c[k]; } });
     setView(state.view);
@@ -377,6 +458,7 @@
     document.documentElement.classList.remove('lang-wait');
     paintLights('sparks-l', 1234);
     paintLights('sparks-r', 98765);
+    loadGallery();
     $('lang-es').addEventListener('click', function () { if (state.lang !== 'es') { state.lang = 'es'; saveLang('es'); applyLang(); } });
     $('lang-en').addEventListener('click', function () { if (state.lang !== 'en') { state.lang = 'en'; saveLang('en'); applyLang(); } });
     $('theme-btn').addEventListener('click', function () { state.theme = state.theme === 'dark' ? 'light' : 'dark'; applyTheme(); });

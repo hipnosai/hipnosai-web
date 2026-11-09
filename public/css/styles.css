@@ -312,3 +312,27 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .feature-card { padding: 24px; }
   .main-nav { gap: 0 18px; font-size: 15px; }
 }
+
+/* ---------- galería: tres carruseles en "¿Qué podemos crear hoy?" ---------- */
+.gallery { width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px; }
+.gallery[hidden], .tiles[hidden] { display: none; }
+.gal-card { display: flex; flex-direction: column; gap: 12px; padding: 14px 14px 18px; border-radius: 22px; background: var(--glassStrong); border: 1px solid var(--glassEdge); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 14px 34px var(--shadow); }
+.gal-view { position: relative; aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden; background: var(--bgAlt); }
+.gal-track { list-style: none; margin: 0; padding: 0; height: 100%; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.gal-track::-webkit-scrollbar { display: none; }
+.gal-track:focus-visible { outline: 3px solid var(--link); outline-offset: -3px; }
+.gal-slide { flex: 0 0 100%; height: 100%; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; }
+.gal-slide img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.gal-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--glassEdge); background: var(--glassStrong); color: var(--ink); cursor: pointer; box-shadow: 0 6px 16px var(--shadow); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: 0.92; }
+.gal-nav:hover { opacity: 1; }
+.gal-prev { left: 10px; }
+.gal-next { right: 10px; }
+.gal-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 12px; }
+.gal-dots { display: flex; flex-wrap: wrap; gap: 6px; }
+.gal-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: var(--fieldEdge); cursor: pointer; transition: width .2s ease, background .2s ease; }
+.gal-dot[aria-current="true"] { width: 22px; background: var(--link); }
+.gal-count { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.gal-card h3 { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 19px; letter-spacing: -0.01em; color: var(--ink); }
+.gal-card p { margin: 0; font-size: 15px; color: var(--muted); }
+.gal-link { font-weight: 600; text-decoration: none; }
+@media (prefers-reduced-motion: reduce) { .gal-dot { transition: none; } }
