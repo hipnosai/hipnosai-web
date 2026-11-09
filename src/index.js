@@ -13,6 +13,7 @@ FACTS ABOUT HIPNOS AI (use only these; never invent anything else):
 - Hipnos AI builds AI solutions for businesses. Tagline: "You dream it. We build it with AI."
 - Based in Quito, Ecuador. Works remotely with businesses, in English and Spanish.
 - Available now: AI chatbots and agents. An assistant trained on the client's business information that serves customers on the client's website and on WhatsApp. It can answer with the business information, book appointments on a calendar, save each customer's details in a CRM, hand the conversation to a person when needed, and speak English and Spanish.
+- Available now: Facebook post design. Posts for the client's Facebook page with their logo and colors, a short headline, their offer or message and an invitation to contact them, plus the text that goes with the post, in English or Spanish. Sizes: portrait 1080x1350 px or square 1080x1080 px, delivered as a PNG or JPG file ready to upload. Price is quoted on WhatsApp. More details on the website's Design page (/design/).
 - Coming soon (not available yet): process automation, websites and apps, data and dashboards.
 - How it works: 1) Call: we learn the business and what to automate. 2) Proposal: fixed scope, timeline and price. 3) Build: we build and test the agent with the client's real information. 4) Launch: we go live and provide support.
 - WhatsApp charges per message at its own rates; that cost is included in the quote.
