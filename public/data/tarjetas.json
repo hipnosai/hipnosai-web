@@ -10,7 +10,71 @@
         "es": "Para celebrar un cumpleaños o invitar a tu evento.",
         "en": "To celebrate a birthday or invite guests to your event."
       },
-      "images": []
+      "images": [
+        {
+          "src": "/galeria/tarjetas/cumpleanos-invitaciones/jardin.webp",
+          "alt": {
+            "es": "Tarjeta de cumpleaños: pastel en un jardín con flores y letrero «Happy Birthday»",
+            "en": "Birthday card: cake in a flower garden with a “Happy Birthday” banner"
+          },
+          "w": 1024,
+          "h": 1024
+        },
+        {
+          "src": "/galeria/tarjetas/cumpleanos-invitaciones/globos-dorados.webp",
+          "alt": {
+            "es": "Tarjeta de cumpleaños: arco de globos dorados y pastel de tres pisos",
+            "en": "Birthday card: gold balloon arch and a three-tier cake"
+          },
+          "w": 800,
+          "h": 1024
+        },
+        {
+          "src": "/galeria/tarjetas/cumpleanos-invitaciones/globos-de-colores.webp",
+          "alt": {
+            "es": "Tarjeta de cumpleaños: globos de colores, banderines y pastel",
+            "en": "Birthday card: colorful balloons, bunting and a cake"
+          },
+          "w": 1024,
+          "h": 1024
+        },
+        {
+          "src": "/galeria/tarjetas/cumpleanos-invitaciones/neon.webp",
+          "alt": {
+            "es": "Tarjeta de cumpleaños: fiesta con luces de neón y pastel",
+            "en": "Birthday card: neon-lit party with a cake"
+          },
+          "w": 400,
+          "h": 400
+        },
+        {
+          "src": "/galeria/tarjetas/cumpleanos-invitaciones/acuarela-cervatillo.webp",
+          "alt": {
+            "es": "Tarjeta «¡Feliz Cumpleaños!» en acuarela con un cervatillo y globos",
+            "en": "Watercolor “¡Feliz Cumpleaños!” card with a fawn and balloons"
+          },
+          "w": 1200,
+          "h": 896
+        },
+        {
+          "src": "/galeria/tarjetas/cumpleanos-invitaciones/acuarela-elefante.webp",
+          "alt": {
+            "es": "Tarjeta «¡Feliz Cumpleaños!» en acuarela con un elefante y globos",
+            "en": "Watercolor “¡Feliz Cumpleaños!” card with an elephant and balloons"
+          },
+          "w": 1200,
+          "h": 896
+        },
+        {
+          "src": "/galeria/tarjetas/cumpleanos-invitaciones/foto-cumpleanos.webp",
+          "alt": {
+            "es": "Foto de cumpleaños de una pareja con letrero «Feliz Cumpleaños» (rostros difuminados)",
+            "en": "Birthday photo of a couple with a “Feliz Cumpleaños” banner (faces blurred)"
+          },
+          "w": 1440,
+          "h": 1568
+        }
+      ]
     },
     {
       "id": "felicitaciones",
@@ -59,6 +123,100 @@
         "en": "Certificates for courses, schools and companies."
       },
       "images": []
+    },
+    {
+      "id": "publicidad",
+      "title": {
+        "es": "Publicidad y flyers para redes",
+        "en": "Ads and flyers for social media"
+      },
+      "desc": {
+        "es": "Anuncios para Facebook, Instagram y WhatsApp con foto real de tu producto.",
+        "en": "Ads for Facebook, Instagram and WhatsApp with a real photo of your product."
+      },
+      "images": [
+        {
+          "src": "/galeria/tarjetas/publicidad/flyer-servicio-ecuador.webp",
+          "alt": {
+            "es": "Flyer del servicio de publicidad para redes, desde $8 a $12 en Ecuador",
+            "en": "Social media advertising flyer, from $8 to $12 in Ecuador"
+          },
+          "w": 1066,
+          "h": 1599
+        },
+        {
+          "src": "/galeria/tarjetas/publicidad/caso-real-minimarket-dudu.webp",
+          "alt": {
+            "es": "Caso real: publicidad de Black Friday para Minimarket Dudu",
+            "en": "Real case: Black Friday ad for Minimarket Dudu"
+          },
+          "w": 1599,
+          "h": 1066
+        },
+        {
+          "src": "/galeria/tarjetas/publicidad/flyer-social-media-en.webp",
+          "alt": {
+            "es": "Flyer en inglés: publicidad para redes sociales",
+            "en": "English flyer: advertising for social media"
+          },
+          "w": 1599,
+          "h": 1066
+        },
+        {
+          "src": "/galeria/tarjetas/publicidad/flyer-redes-ecuador.webp",
+          "alt": {
+            "es": "Flyer: publicidad para redes, desde $8 a $12 en Ecuador",
+            "en": "Flyer: social media advertising, from $8 to $12 in Ecuador"
+          },
+          "w": 1599,
+          "h": 1066
+        },
+        {
+          "src": "/galeria/tarjetas/publicidad/anuncio-audifonos.webp",
+          "alt": {
+            "es": "Anuncio para redes: audífonos inalámbricos, desde $25 a $35 en EE. UU.",
+            "en": "Social media ad: wireless earbuds, from $25 to $35 in the USA"
+          },
+          "w": 1599,
+          "h": 1066
+        },
+        {
+          "src": "/galeria/tarjetas/publicidad/anuncio-perfume.webp",
+          "alt": {
+            "es": "Anuncio para redes: perfume, desde $25 a $35 en EE. UU.",
+            "en": "Social media ad: perfume, from $25 to $35 in the USA"
+          },
+          "w": 1600,
+          "h": 800
+        },
+        {
+          "src": "/galeria/tarjetas/publicidad/anuncio-ecommerce-perfume.webp",
+          "alt": {
+            "es": "Anuncio para tienda en línea: perfume",
+            "en": "E-commerce ad: perfume"
+          },
+          "w": 1600,
+          "h": 800
+        },
+        {
+          "src": "/galeria/tarjetas/publicidad/anuncio-hamburguesa.webp",
+          "alt": {
+            "es": "Anuncio para redes: combo de hamburguesa, desde $25 a $35 en EE. UU.",
+            "en": "Social media ad: burger combo, from $25 to $35 in the USA"
+          },
+          "w": 1599,
+          "h": 1066
+        },
+        {
+          "src": "/galeria/tarjetas/publicidad/anuncio-colageno.webp",
+          "alt": {
+            "es": "Anuncio para redes: colágeno, desde $25 a $35 en EE. UU.",
+            "en": "Social media ad: collagen, from $25 to $35 in the USA"
+          },
+          "w": 1200,
+          "h": 1600
+        }
+      ]
     }
   ]
 }
