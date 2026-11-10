@@ -39,6 +39,33 @@
           "h": 1280
         },
         {
+          "src": "/galeria/posts-facebook/creamos-tus-posts-tienda.webp",
+          "alt": {
+            "es": "Presentación «Creamos tus posts para Facebook»: posts en tres celulares y una emprendedora en su tienda",
+            "en": "Presentation “We create your Facebook posts”: posts on three phones and a shop owner in her store"
+          },
+          "w": 1920,
+          "h": 1080
+        },
+        {
+          "src": "/galeria/posts-facebook/posts-listos-para-publicar.webp",
+          "alt": {
+            "es": "«Posts listos para publicar»: ejemplos de oferta, producto nuevo y promo semanal en una laptop",
+            "en": "“Posts ready to publish”: sample offer, new product and weekly promo posts on a laptop"
+          },
+          "w": 1920,
+          "h": 1080
+        },
+        {
+          "src": "/galeria/posts-facebook/hacemos-tus-posts-ecuador.webp",
+          "alt": {
+            "es": "«¡Hacemos tus posts para Facebook!» para pequeños negocios de Ecuador: bebidas, comida y belleza con sus precios",
+            "en": "“We make your Facebook posts!” for small businesses in Ecuador: drinks, food and beauty with their prices"
+          },
+          "w": 1920,
+          "h": 1080
+        },
+        {
           "src": "/galeria/facebook/promo-descuentos.webp",
           "alt": {
             "es": "Post de promoción: descuentos del 10% al 50% según el servicio",
