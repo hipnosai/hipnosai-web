@@ -358,3 +358,16 @@ body.lb-open { overflow: hidden; }
   .lb-prev { left: calc(50% - 56px); }
   .lb-next { right: calc(50% - 56px); }
 }
+
+/* ---------- página de tarjetas: título corto y cinco carruseles (3 arriba, 2 abajo) ---------- */
+.svc-hero.is-compact .svc-hero-in { max-width: 1176px; padding-top: 40px; padding-bottom: 28px; gap: 14px; }
+.svc-hero.is-compact .svc-title { font-size: clamp(2rem, 3.8vw, 3.1rem); max-width: 900px; text-wrap: balance; }
+.cards-sec { position: relative; z-index: 2; background: var(--bg); }
+.cards-in { max-width: 1176px; margin: 0 auto; padding: 8px 28px 96px; }
+.gallery.gallery-wide { max-width: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; }
+.gallery-wide .gal-card { flex: 0 1 calc((100% - 44px) / 3); min-width: 0; }
+.gal-empty { display: flex; align-items: center; justify-content: center; border: 2px dashed var(--fieldEdge); }
+.gal-empty-in { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px; color: var(--muted); font-size: 15px; font-weight: 500; text-align: center; }
+@media (max-width: 1000px) { .gallery-wide .gal-card { flex-basis: calc((100% - 22px) / 2); } }
+@media (max-width: 640px) { .gallery-wide .gal-card { flex-basis: 100%; } }
+@media (max-width: 760px) { .cards-in { padding: 0 16px 64px; } }

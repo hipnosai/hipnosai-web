@@ -1,0 +1,64 @@
+{
+  "carousels": [
+    {
+      "id": "cumpleanos-invitaciones",
+      "title": {
+        "es": "Tarjetas de cumpleaños e invitaciones",
+        "en": "Birthday cards and invitations"
+      },
+      "desc": {
+        "es": "Para celebrar un cumpleaños o invitar a tu evento.",
+        "en": "To celebrate a birthday or invite guests to your event."
+      },
+      "images": []
+    },
+    {
+      "id": "felicitaciones",
+      "title": {
+        "es": "Felicitaciones",
+        "en": "Congratulations cards"
+      },
+      "desc": {
+        "es": "Para un logro, un aniversario o una fecha especial.",
+        "en": "For an achievement, an anniversary or a special date."
+      },
+      "images": []
+    },
+    {
+      "id": "navidad",
+      "title": {
+        "es": "Tarjetas de Navidad",
+        "en": "Christmas cards"
+      },
+      "desc": {
+        "es": "Para tu familia, tus amigos o los clientes de tu negocio.",
+        "en": "For your family, your friends or your business’s customers."
+      },
+      "images": []
+    },
+    {
+      "id": "agradecimientos",
+      "title": {
+        "es": "Agradecimientos",
+        "en": "Thank-you cards"
+      },
+      "desc": {
+        "es": "Para agradecer a tus clientes, a tus invitados o a tu equipo.",
+        "en": "To thank your customers, your guests or your team."
+      },
+      "images": []
+    },
+    {
+      "id": "diplomas",
+      "title": {
+        "es": "Diplomas",
+        "en": "Diplomas"
+      },
+      "desc": {
+        "es": "Reconocimientos para cursos, escuelas y empresas.",
+        "en": "Certificates for courses, schools and companies."
+      },
+      "images": []
+    }
+  ]
+}
