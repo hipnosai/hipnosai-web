@@ -13,6 +13,8 @@
       themeLabel: 'Cambiar entre modo claro y oscuro',
       nav1: 'Inicio', navDesign: 'Diseño', nav2: 'Agentes IA', nav3: 'Desarrollo', nav4: 'Automatización', nav6: 'Soluciones', nav7: 'Recursos', navCta: 'Consulta gratis',
       kicker: 'Diseño gráfico', available: 'Disponible',
+      examplesTitle: 'Así es el servicio',
+      galPrev: 'Anterior', galNext: 'Siguiente', galGo: 'Ir a la imagen', galZoom: 'Ampliar', galClose: 'Cerrar',
       title: 'Posts para Facebook, listos para publicar.',
       sub: 'Diseñamos los posts de tu página de Facebook con tu logo, tus colores y un mensaje claro, en la medida que mejor se ve en el celular.',
       quoteBtn: 'Cotiza por WhatsApp',
@@ -52,6 +54,8 @@
       themeLabel: 'Switch between light and dark mode',
       nav1: 'Home', navDesign: 'Design', nav2: 'AI Agents', nav3: 'Development', nav4: 'Automation', nav6: 'Solutions', nav7: 'Resources', navCta: 'Free consultation',
       kicker: 'Graphic design', available: 'Available',
+      examplesTitle: 'A look at the service',
+      galPrev: 'Previous', galNext: 'Next', galGo: 'Go to image', galZoom: 'Enlarge', galClose: 'Close',
       title: 'Facebook posts, ready to publish.',
       sub: 'We design posts for your Facebook page with your logo, your colors and a clear message, sized to look right on phones.',
       quoteBtn: 'Get a quote on WhatsApp',
@@ -96,6 +100,21 @@
   function $(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
 
+  /* Carrusel de ejemplos del servicio (datos en /data/posts-facebook.json, código en /js/galeria.js) */
+  var examples = null;
+  function renderExamples() {
+    var box = $('fb-gallery');
+    if (!box || !examples || !window.HipnosGaleria) { return; }
+    var c = COPY[state.lang];
+    window.HipnosGaleria.render(box, examples, { lang: state.lang, text: { prev: c.galPrev, next: c.galNext, go: c.galGo, see: '', zoom: c.galZoom, close: c.galClose } });
+  }
+  function loadExamples() {
+    fetch('/data/posts-facebook.json', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && Array.isArray(d.carousels)) { examples = d.carousels; renderExamples(); } })
+      .catch(function () { /* sin datos: la página queda como antes */ });
+  }
+
   function applyTheme() {
     var dark = state.theme === 'dark';
     if (dark) { document.documentElement.setAttribute('data-theme', 'dark'); } else { document.documentElement.removeAttribute('data-theme'); }
@@ -123,12 +142,14 @@
     $('wa-hero').href = wa;
     $('lang-es').setAttribute('aria-pressed', state.lang === 'es' ? 'true' : 'false');
     $('lang-en').setAttribute('aria-pressed', state.lang === 'en' ? 'true' : 'false');
+    renderExamples();
   }
 
   function init() {
     applyTheme();
     applyLang();
     document.documentElement.classList.remove('lang-wait');
+    loadExamples();
     $('lang-es').addEventListener('click', function () { if (state.lang !== 'es') { state.lang = 'es'; saveLang('es'); applyLang(); } });
     $('lang-en').addEventListener('click', function () { if (state.lang !== 'en') { state.lang = 'en'; saveLang('en'); applyLang(); } });
     $('theme-btn').addEventListener('click', function () { state.theme = state.theme === 'dark' ? 'light' : 'dark'; applyTheme(); });

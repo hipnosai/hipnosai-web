@@ -371,3 +371,9 @@ body.lb-open { overflow: hidden; }
 @media (max-width: 1000px) { .gallery-wide .gal-card { flex-basis: calc((100% - 22px) / 2); } }
 @media (max-width: 640px) { .gallery-wide .gal-card { flex-basis: 100%; } }
 @media (max-width: 760px) { .cards-in { padding: 0 16px 64px; } }
+
+/* ---------- página de posts para Facebook: un carrusel ancho de ejemplos ---------- */
+.fb-examples .section-in { padding-top: 8px; padding-bottom: 80px; }
+.fb-examples .h2 { margin-bottom: 24px; text-align: center; }
+.gallery.gallery-single { max-width: 900px; margin: 0 auto; grid-template-columns: 1fr; }
+.gallery-single .gal-view { aspect-ratio: 3 / 2; }

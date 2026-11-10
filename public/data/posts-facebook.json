@@ -1,0 +1,44 @@
+{
+  "carousels": [
+    {
+      "id": "posts-facebook",
+      "title": {
+        "es": "Creamos tus posts para Facebook",
+        "en": "We create your Facebook posts"
+      },
+      "desc": {
+        "es": "Ejemplos de posts, catálogo de estilos y cómo trabajamos.",
+        "en": "Sample posts, a style catalog and how we work."
+      },
+      "images": [
+        {
+          "src": "/galeria/posts-facebook/creamos-tus-posts.webp",
+          "alt": {
+            "es": "Presentación «Creamos tus posts para Facebook», con ejemplos de posts en una laptop y un celular",
+            "en": "Presentation “We create your Facebook posts”, with sample posts on a laptop and a phone"
+          },
+          "w": 1920,
+          "h": 1280
+        },
+        {
+          "src": "/galeria/posts-facebook/catalogo-de-estilos.webp",
+          "alt": {
+            "es": "Catálogo de 6 estilos de posts: bebidas, comida, belleza, ropa, promociones y bienestar",
+            "en": "Catalog of 6 post styles: drinks, food, beauty, clothing, promotions and wellness"
+          },
+          "w": 1920,
+          "h": 1280
+        },
+        {
+          "src": "/galeria/posts-facebook/asi-de-facil.webp",
+          "alt": {
+            "es": "Cómo funciona en 3 pasos: eliges tu idea, nosotros lo diseñamos, publicas y vendes",
+            "en": "How it works in 3 steps: you choose your idea, we design it, you publish and sell"
+          },
+          "w": 1920,
+          "h": 1280
+        }
+      ]
+    }
+  ]
+}
