@@ -1,0 +1,176 @@
+{
+  "carousels": [
+    {
+      "id": "facebook",
+      "title": {
+        "es": "Facebook",
+        "en": "Facebook"
+      },
+      "desc": {
+        "es": "Posts para el muro de tu página.",
+        "en": "Posts for your page’s feed."
+      },
+      "images": [
+        {
+          "src": "/galeria/posts-facebook/creamos-tus-posts.webp",
+          "alt": {
+            "es": "Presentación «Creamos tus posts para Facebook», con ejemplos de posts en una laptop y un celular",
+            "en": "Presentation “We create your Facebook posts”, with sample posts on a laptop and a phone"
+          },
+          "w": 1920,
+          "h": 1280
+        },
+        {
+          "src": "/galeria/posts-facebook/catalogo-de-estilos.webp",
+          "alt": {
+            "es": "Catálogo de 6 estilos de posts: bebidas, comida, belleza, ropa, promociones y bienestar",
+            "en": "Catalog of 6 post styles: drinks, food, beauty, clothing, promotions and wellness"
+          },
+          "w": 1920,
+          "h": 1280
+        },
+        {
+          "src": "/galeria/posts-facebook/asi-de-facil.webp",
+          "alt": {
+            "es": "Cómo funciona en 3 pasos: eliges tu idea, nosotros lo diseñamos, publicas y vendes",
+            "en": "How it works in 3 steps: you choose your idea, we design it, you publish and sell"
+          },
+          "w": 1920,
+          "h": 1280
+        },
+        {
+          "src": "/galeria/facebook/promo-descuentos.webp",
+          "alt": {
+            "es": "Post de promoción: descuentos del 10% al 50% según el servicio",
+            "en": "Promotion post: 10% to 50% off depending on the service"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-01.webp",
+          "alt": {
+            "es": "Post: chatbots de WhatsApp con IA",
+            "en": "Post: AI WhatsApp chatbots"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-02.webp",
+          "alt": {
+            "es": "Post: agentes de IA con tus documentos",
+            "en": "Post: AI agents with your documents"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-03.webp",
+          "alt": {
+            "es": "Post: páginas web y landing pages",
+            "en": "Post: websites and landing pages"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-04.webp",
+          "alt": {
+            "es": "Post: apps y herramientas a medida",
+            "en": "Post: custom apps and tools"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-05.webp",
+          "alt": {
+            "es": "Post: automatizaciones con n8n y Python",
+            "en": "Post: automations with n8n and Python"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-06.webp",
+          "alt": {
+            "es": "Post: Excel y sistemas a medida",
+            "en": "Post: custom Excel and systems"
+          },
+          "w": 1080,
+          "h": 1350
+        },
+        {
+          "src": "/galeria/facebook/servicio-07.webp",
+          "alt": {
+            "es": "Post: listas de clientes potenciales con IA",
+            "en": "Post: AI-built lead lists"
+          },
+          "w": 1080,
+          "h": 1350
+        }
+      ]
+    },
+    {
+      "id": "instagram",
+      "title": {
+        "es": "Instagram",
+        "en": "Instagram"
+      },
+      "desc": {
+        "es": "Posts para el perfil de tu cuenta.",
+        "en": "Posts for your account’s profile."
+      },
+      "images": []
+    },
+    {
+      "id": "tiktok",
+      "title": {
+        "es": "TikTok",
+        "en": "TikTok"
+      },
+      "desc": {
+        "es": "Imágenes y portadas verticales para tus publicaciones.",
+        "en": "Vertical images and covers for your posts."
+      },
+      "images": []
+    },
+    {
+      "id": "historias",
+      "title": {
+        "es": "Historias y estados",
+        "en": "Stories and statuses"
+      },
+      "desc": {
+        "es": "Pantalla completa para Instagram, Facebook y WhatsApp.",
+        "en": "Full screen for Instagram, Facebook and WhatsApp."
+      },
+      "images": []
+    },
+    {
+      "id": "linkedin",
+      "title": {
+        "es": "LinkedIn",
+        "en": "LinkedIn"
+      },
+      "desc": {
+        "es": "Posts profesionales para tu empresa o tu perfil.",
+        "en": "Professional posts for your company or profile."
+      },
+      "images": []
+    },
+    {
+      "id": "x",
+      "title": {
+        "es": "X (Twitter)",
+        "en": "X (Twitter)"
+      },
+      "desc": {
+        "es": "Imágenes para acompañar tus publicaciones.",
+        "en": "Images to go with your posts."
+      },
+      "images": []
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-/* Hipnos AI — página de servicios de diseño. Idioma EN/ES (empieza en inglés), modo claro/oscuro (empieza claro). */
+/* Hipnos AI — página «Posts para redes sociales». Idioma EN/ES (empieza en inglés), modo claro/oscuro (empieza claro). */
 (function () {
   'use strict';
 
@@ -7,84 +7,88 @@
 
   var COPY = {
     es: {
-      docTitle: 'Diseño de posts para Facebook — Hipnos AI',
-      docDesc: 'Posts para Facebook con tu logo, tus colores y un mensaje claro, en la medida que mejor se ve en el celular y listos para publicar.',
+      docTitle: 'Diseño de posts para redes sociales — Hipnos AI',
+      docDesc: 'Posts para Facebook, Instagram, TikTok y todas tus redes sociales, con tu logo, tus colores y un mensaje claro, listos para publicar.',
       navLabel: 'Menú principal', menuLabel: 'Abrir o cerrar el menú', langLabel: 'Idioma', platformsLabel: 'Plataformas',
       themeLabel: 'Cambiar entre modo claro y oscuro',
       nav1: 'Inicio', navDesign: 'Diseño', nav2: 'Agentes IA', nav3: 'Desarrollo', nav4: 'Automatización', nav6: 'Soluciones', nav7: 'Recursos', navCta: 'Consulta gratis',
       kicker: 'Diseño gráfico', available: 'Disponible',
-      examplesTitle: 'Así es el servicio',
+      examplesTitle: 'Posts para cada red social', galEmpty: 'Diseños en preparación',
       galPrev: 'Anterior', galNext: 'Siguiente', galGo: 'Ir a la imagen', galZoom: 'Ampliar', galClose: 'Cerrar',
-      title: 'Posts para Facebook, listos para publicar.',
-      sub: 'Diseñamos los posts de tu página de Facebook con tu logo, tus colores y un mensaje claro, en la medida que mejor se ve en el celular.',
+      title: 'Posts para redes sociales',
+      nets: 'Para Facebook, Instagram, TikTok, LinkedIn, X y todas tus redes sociales.',
+      sub: 'Diseñamos los posts de tus redes con tu logo, tus colores y un mensaje claro, en la medida que pide cada red. Listos para publicar.',
       quoteBtn: 'Cotiza por WhatsApp',
       whatTitle: 'Qué es',
-      whatText: 'Una imagen diseñada para el muro de tu página. Muestra tu marca, un título corto, tu oferta o mensaje y cómo contactarte.',
+      whatText: 'Una imagen diseñada para publicar en tus redes. Muestra tu marca, un título corto, tu oferta o mensaje y cómo contactarte.',
       includesTitle: 'Qué incluye',
       includes: [
         'Diseño con tu logo y tus colores',
         'Título corto, tu oferta o mensaje y una invitación a escribirte',
         'El texto que acompaña la publicación',
         'En español o en inglés',
-        'Medida vertical o cuadrada, la que prefieras',
-        'Archivo listo para subir a Facebook'
+        'La medida que pide cada red: vertical, cuadrada o de historia',
+        'Archivo listo para subir a tus redes'
       ],
       sizesTitle: 'Medidas que entregamos',
       sizesLead: 'PNG para diseños con texto y JPG para fotos. Listos para subir desde tu celular o tu computadora.',
-      portrait: 'Vertical · 1080 × 1350 px', portraitT: 'Ocupa más pantalla en el celular.',
-      square: 'Cuadrada · 1080 × 1080 px', squareT: 'Se ve bien en cualquier equipo.',
+      portrait: 'Vertical · 1080 × 1350 px', portraitT: 'Para Facebook e Instagram. Ocupa más pantalla en el celular.',
+      square: 'Cuadrada · 1080 × 1080 px', squareT: 'Se ve bien en cualquier red y equipo.',
+      story: 'Historias y TikTok · 1080 × 1920 px', storyT: 'Pantalla completa en Historias, Reels y TikTok.',
       stepsTitle: 'Cómo funciona',
       steps: [
         ['1', 'Cuéntanos qué anunciar', 'Escríbenos por WhatsApp con tu oferta, producto o novedad.'],
         ['2', 'Envíanos tu marca', 'Tu logo, tus colores y tus fotos, si las tienes.'],
         ['3', 'Revisa el diseño', 'Te enviamos el diseño para que lo revises antes de publicar.'],
-        ['4', 'Publica', 'Recibes el archivo listo para subir a tu página.']
+        ['4', 'Publica', 'Recibes el archivo listo para subir a tus redes.']
       ],
       contactTitle: 'Cotiza tus posts',
-      contactSub: 'Cuéntanos cuántos posts necesitas y qué quieres anunciar, y te enviamos el precio.',
+      contactSub: 'Cuéntanos cuántos posts necesitas, para qué redes y qué quieres anunciar, y te enviamos el precio.',
       contactWhatsApp: 'Escríbenos por WhatsApp',
-      waText: 'Hola Hipnos AI, quiero cotizar posts para Facebook.',
+      waText: 'Hola Hipnos AI, quiero cotizar posts para redes sociales.',
       privacyLink: 'Privacidad',
       footerTag: '© 2026 Hipnos AI. Tú lo sueñas. Nosotros lo construimos con IA.'
     },
     en: {
-      docTitle: 'Facebook post design — Hipnos AI',
-      docDesc: 'Facebook posts designed with your logo, your colors and a clear message, sized for phones and ready to publish.',
+      docTitle: 'Social media post design — Hipnos AI',
+      docDesc: 'Posts for Facebook, Instagram, TikTok and all your social networks, with your logo, your colors and a clear message, ready to publish.',
       navLabel: 'Main menu', menuLabel: 'Open or close the menu', langLabel: 'Language', platformsLabel: 'Platforms',
       themeLabel: 'Switch between light and dark mode',
       nav1: 'Home', navDesign: 'Design', nav2: 'AI Agents', nav3: 'Development', nav4: 'Automation', nav6: 'Solutions', nav7: 'Resources', navCta: 'Free consultation',
       kicker: 'Graphic design', available: 'Available',
-      examplesTitle: 'A look at the service',
+      examplesTitle: 'Posts for each social network', galEmpty: 'Designs in progress',
       galPrev: 'Previous', galNext: 'Next', galGo: 'Go to image', galZoom: 'Enlarge', galClose: 'Close',
-      title: 'Facebook posts, ready to publish.',
-      sub: 'We design posts for your Facebook page with your logo, your colors and a clear message, sized to look right on phones.',
+      title: 'Social media posts',
+      nets: 'For Facebook, Instagram, TikTok, LinkedIn, X and all your social networks.',
+      sub: 'We design posts for your social networks with your logo, your colors and a clear message, in the size each network asks for. Ready to publish.',
       quoteBtn: 'Get a quote on WhatsApp',
       whatTitle: 'What it is',
-      whatText: 'An image designed for your page’s feed. It shows your brand, a short headline, your offer or message, and how to reach you.',
+      whatText: 'An image designed to post on your social networks. It shows your brand, a short headline, your offer or message, and how to reach you.',
       includesTitle: 'What’s included',
       includes: [
         'Design with your logo and your colors',
         'A short headline, your offer or message, and an invitation to contact you',
         'The text that goes with the post',
         'In English or Spanish',
-        'Portrait or square size, whichever you prefer',
-        'A file ready to upload to Facebook'
+        'The size each network asks for: portrait, square or story',
+        'A file ready to upload to your social networks'
       ],
       sizesTitle: 'Sizes we deliver',
       sizesLead: 'PNG for designs with text, JPG for photos. Ready to upload from your phone or computer.',
-      portrait: 'Portrait · 1080 × 1350 px', portraitT: 'Takes up more of the screen on phones.',
-      square: 'Square · 1080 × 1080 px', squareT: 'Looks right on any device.',
+      portrait: 'Portrait · 1080 × 1350 px', portraitT: 'For Facebook and Instagram. Takes up more of the screen on phones.',
+      square: 'Square · 1080 × 1080 px', squareT: 'Looks right on any network and device.',
+      story: 'Stories and TikTok · 1080 × 1920 px', storyT: 'Full screen on Stories, Reels and TikTok.',
       stepsTitle: 'How it works',
       steps: [
         ['1', 'Tell us what to announce', 'Message us on WhatsApp with your offer, product or news.'],
         ['2', 'Send us your brand', 'Your logo, your colors and your photos, if you have them.'],
         ['3', 'Review the design', 'We send you the design to check before you publish.'],
-        ['4', 'Publish', 'You get the file ready to upload to your page.']
+        ['4', 'Publish', 'You get the file ready to upload to your social networks.']
       ],
       contactTitle: 'Get a quote for your posts',
-      contactSub: 'Tell us how many posts you need and what you want to announce, and we will send you the price.',
+      contactSub: 'Tell us how many posts you need, for which networks and what you want to announce, and we will send you the price.',
       contactWhatsApp: 'Message us on WhatsApp',
-      waText: 'Hi Hipnos AI, I would like a quote for Facebook posts.',
+      waText: 'Hi Hipnos AI, I would like a quote for social media posts.',
       privacyLink: 'Privacy',
       footerTag: '© 2026 Hipnos AI. You dream it. We build it with AI.'
     }
@@ -100,16 +104,16 @@
   function $(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
 
-  /* Carrusel de ejemplos del servicio (datos en /data/posts-facebook.json, código en /js/galeria.js) */
+  /* Un carrusel por red social (datos en /data/posts-redes.json, código en /js/galeria.js) */
   var examples = null;
   function renderExamples() {
     var box = $('fb-gallery');
     if (!box || !examples || !window.HipnosGaleria) { return; }
     var c = COPY[state.lang];
-    window.HipnosGaleria.render(box, examples, { lang: state.lang, text: { prev: c.galPrev, next: c.galNext, go: c.galGo, see: '', zoom: c.galZoom, close: c.galClose } });
+    window.HipnosGaleria.render(box, examples, { lang: state.lang, showEmpty: true, text: { prev: c.galPrev, next: c.galNext, go: c.galGo, see: '', zoom: c.galZoom, close: c.galClose, empty: c.galEmpty } });
   }
   function loadExamples() {
-    fetch('/data/posts-facebook.json', { cache: 'no-cache' })
+    fetch('/data/posts-redes.json', { cache: 'no-cache' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) { if (d && Array.isArray(d.carousels)) { examples = d.carousels; renderExamples(); } })
       .catch(function () { /* sin datos: la página queda como antes */ });

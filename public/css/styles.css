@@ -377,3 +377,6 @@ body.lb-open { overflow: hidden; }
 .fb-examples .h2 { margin-bottom: 24px; text-align: center; }
 .gallery.gallery-single { max-width: 900px; margin: 0 auto; grid-template-columns: 1fr; }
 .gallery-single .gal-view { aspect-ratio: 3 / 2; }
+.svc-nets { margin: -8px 0 0; font-size: 16px; font-weight: 600; color: var(--blueText); }
+.svc-frame-story { width: 160px; aspect-ratio: 9 / 16; }
+@media (max-width: 760px) { .svc-frame-story { width: 108px; font-size: 22px; } }

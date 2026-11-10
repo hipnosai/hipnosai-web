@@ -3,12 +3,12 @@
     {
       "id": "facebook",
       "title": {
-        "es": "Posts para Facebook",
-        "en": "Facebook posts"
+        "es": "Posts para redes sociales",
+        "en": "Social media posts"
       },
       "desc": {
-        "es": "Diseños para el muro de tu página, listos para publicar.",
-        "en": "Designs for your page’s feed, ready to publish."
+        "es": "Diseños para Facebook, Instagram y todas tus redes, listos para publicar.",
+        "en": "Designs for Facebook, Instagram and all your social networks, ready to publish."
       },
       "link": "/design/",
       "images": [

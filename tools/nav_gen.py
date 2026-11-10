@@ -50,10 +50,6 @@ MENUS = [
   ('design', 'navDesign', 'Graphic design', [
     ('dFb', 'dFbD', 'post', 'blue', '/design/', 'ok'),
     ('dCards', 'dCardsD', 'gift', 'pink', '/design/tarjetas/', None),
-    ('dIg', 'dIgD', 'insta', 'pink', None, 'soon'),
-    ('dStories', 'dStoriesD', 'story', 'violet', None, 'soon'),
-    ('dX', 'dXD', 'x', 'slate', None, 'soon'),
-    ('dPin', 'dPinD', 'pin', 'orange', None, 'soon'),
   ]),
   ('ai', 'navAI', 'AI development', [
     ('aiChat', 'aiChatD', 'chat', 'blue', '{h}#servicios', 'ok'),
@@ -76,7 +72,7 @@ EN = {  # texto inicial en el HTML (inglés); nav.js lo traduce
   'aiChat': 'AI chatbots and agents', 'aiChatD': 'They serve your customers on your website and WhatsApp',
   'aiAuto': 'Process automation', 'aiAutoD': 'Repetitive tasks that run on their own',
   'aiWeb': 'Websites and apps', 'aiWebD': 'Fast sites, ready to sell', 'aiData': 'Data and dashboards', 'aiDataD': 'Your numbers in clear dashboards',
-  'dFb': 'Facebook posts', 'dFbD': 'With your logo, your colors and a clear message', 'dIg': 'Instagram posts', 'dIgD': 'For your account’s feed',
+  'dFb': 'Social media posts', 'dFbD': 'Facebook, Instagram, TikTok and all your networks', 'dIg': 'Instagram posts', 'dIgD': 'For your account’s feed',
   'dStories': 'Instagram and Facebook Stories', 'dStoriesD': 'Full-screen vertical format', 'dX': 'Posts for X', 'dXD': 'Images for your posts',
   'dCards': 'Birthday cards and more', 'dCardsD': 'Invitations, congratulations, Christmas, thank-you cards and diplomas',
   'dPin': 'Pinterest pins', 'dPinD': 'Vertical images for Pinterest',
