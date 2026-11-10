@@ -77,7 +77,62 @@
         "es": "Posts para el perfil de tu cuenta.",
         "en": "Posts for your account’s profile."
       },
-      "images": []
+      "images": [
+        {
+          "src": "/galeria/posts-redes/instagram/creamos-tus-posts.webp",
+          "alt": {
+            "es": "Presentación «Creamos tus posts para Instagram»: posts y perfil de una tienda de jugos y empanadas",
+            "en": "Presentation “We create your Instagram posts”: posts and profile of a juice and empanada shop"
+          },
+          "w": 1600,
+          "h": 1600
+        },
+        {
+          "src": "/galeria/posts-redes/instagram/posts-listos.webp",
+          "alt": {
+            "es": "«Posts listos para publicar»: perfil de Instagram con platos de comida en un celular",
+            "en": "“Posts ready to publish”: Instagram profile with food dishes on a phone"
+          },
+          "w": 1600,
+          "h": 1600
+        },
+        {
+          "src": "/galeria/posts-redes/instagram/hacemos-tus-posts.webp",
+          "alt": {
+            "es": "«¡Hacemos tus posts para Instagram!» con tu nombre, tus precios y tus colores: bebidas, comida y belleza",
+            "en": "“We make your Instagram posts!” with your name, prices and colors: drinks, food and beauty"
+          },
+          "w": 1600,
+          "h": 1600
+        },
+        {
+          "src": "/galeria/posts-redes/instagram/bebidas.webp",
+          "alt": {
+            "es": "«¿Vendes bebidas?» Posts para Instagram: jugos, batidos y cafés",
+            "en": "“Do you sell drinks?” Instagram posts: juices, smoothies and coffee"
+          },
+          "w": 1408,
+          "h": 1760
+        },
+        {
+          "src": "/galeria/posts-redes/instagram/comida.webp",
+          "alt": {
+            "es": "«¿Vendes comida?» Posts para Instagram: menú, combos y promociones con tu nombre y precios",
+            "en": "“Do you sell food?” Instagram posts: menu, combos and promotions with your name and prices"
+          },
+          "w": 960,
+          "h": 1920
+        },
+        {
+          "src": "/galeria/posts-redes/instagram/salon-de-belleza.webp",
+          "alt": {
+            "es": "«¿Tienes salón de belleza?» Posts para Instagram: uñas, maquillaje y peinados",
+            "en": "“Do you own a beauty salon?” Instagram posts: nails, makeup and hairstyles"
+          },
+          "w": 960,
+          "h": 1920
+        }
+      ]
     },
     {
       "id": "tiktok",
@@ -89,7 +144,35 @@
         "es": "Imágenes y portadas verticales para tus publicaciones.",
         "en": "Vertical images and covers for your posts."
       },
-      "images": []
+      "images": [
+        {
+          "src": "/galeria/posts-redes/tiktok/bebidas.webp",
+          "alt": {
+            "es": "«¿Vendes bebidas?» Portadas y posts para TikTok: jugos, batidos y cafés",
+            "en": "“Do you sell drinks?” TikTok covers and posts: juices, smoothies and coffee"
+          },
+          "w": 1080,
+          "h": 1920
+        },
+        {
+          "src": "/galeria/posts-redes/tiktok/comida.webp",
+          "alt": {
+            "es": "«¿Vendes comida?» Portadas y posts para TikTok: menú, combos y promociones",
+            "en": "“Do you sell food?” TikTok covers and posts: menu, combos and promotions"
+          },
+          "w": 1080,
+          "h": 1920
+        },
+        {
+          "src": "/galeria/posts-redes/tiktok/salon-de-belleza.webp",
+          "alt": {
+            "es": "«¿Tienes salón de belleza?» Portadas y posts para TikTok: uñas, maquillaje y peinados",
+            "en": "“Do you own a beauty salon?” TikTok covers and posts: nails, makeup and hairstyles"
+          },
+          "w": 1080,
+          "h": 1920
+        }
+      ]
     },
     {
       "id": "historias",
@@ -101,7 +184,35 @@
         "es": "Pantalla completa para Instagram, Facebook y WhatsApp.",
         "en": "Full screen for Instagram, Facebook and WhatsApp."
       },
-      "images": []
+      "images": [
+        {
+          "src": "/galeria/posts-redes/historias/bebidas.webp",
+          "alt": {
+            "es": "«¿Vendes bebidas?» Historias y estados: jugo tropical con frutas",
+            "en": "“Do you sell drinks?” Stories and statuses: tropical juice with fruit"
+          },
+          "w": 1080,
+          "h": 1920
+        },
+        {
+          "src": "/galeria/posts-redes/historias/comida.webp",
+          "alt": {
+            "es": "«¿Vendes comida?» Historias y estados: menú del día, combos y ofertas",
+            "en": "“Do you sell food?” Stories and statuses: daily menu, combos and deals"
+          },
+          "w": 1080,
+          "h": 1920
+        },
+        {
+          "src": "/galeria/posts-redes/historias/salon-de-belleza.webp",
+          "alt": {
+            "es": "«¿Tienes salón de belleza?» Historias y estados: promos, agenda y servicios",
+            "en": "“Do you own a beauty salon?” Stories and statuses: promos, bookings and services"
+          },
+          "w": 1080,
+          "h": 1920
+        }
+      ]
     },
     {
       "id": "linkedin",
@@ -113,7 +224,35 @@
         "es": "Posts profesionales para tu empresa o tu perfil.",
         "en": "Professional posts for your company or profile."
       },
-      "images": []
+      "images": [
+        {
+          "src": "/galeria/posts-redes/linkedin/bebidas.webp",
+          "alt": {
+            "es": "«¿Tienes un negocio de bebidas?» Posts para LinkedIn: lanzamiento de una línea de jugos",
+            "en": "“Do you run a drinks business?” LinkedIn posts: launch of a juice line"
+          },
+          "w": 1920,
+          "h": 1280
+        },
+        {
+          "src": "/galeria/posts-redes/linkedin/restaurante.webp",
+          "alt": {
+            "es": "«¿Tienes un restaurante?» Posts para LinkedIn: menú, promociones y marca",
+            "en": "“Do you own a restaurant?” LinkedIn posts: menu, promotions and brand"
+          },
+          "w": 1920,
+          "h": 1280
+        },
+        {
+          "src": "/galeria/posts-redes/linkedin/salon-de-belleza.webp",
+          "alt": {
+            "es": "«¿Tienes un salón de belleza?» Posts para LinkedIn con contenido elegante y profesional",
+            "en": "“Do you own a beauty salon?” LinkedIn posts with elegant, professional content"
+          },
+          "w": 1920,
+          "h": 1280
+        }
+      ]
     },
     {
       "id": "x",
@@ -125,7 +264,35 @@
         "es": "Imágenes para acompañar tus publicaciones.",
         "en": "Images to go with your posts."
       },
-      "images": []
+      "images": [
+        {
+          "src": "/galeria/posts-redes/x/bebidas.webp",
+          "alt": {
+            "es": "«¿Vendes bebidas?» Posts para X: jugos, cafés y promos",
+            "en": "“Do you sell drinks?” X posts: juices, coffee and promos"
+          },
+          "w": 1920,
+          "h": 1280
+        },
+        {
+          "src": "/galeria/posts-redes/x/comida.webp",
+          "alt": {
+            "es": "«¿Vendes comida?» Posts para X: menú y ofertas",
+            "en": "“Do you sell food?” X posts: menu and deals"
+          },
+          "w": 1920,
+          "h": 960
+        },
+        {
+          "src": "/galeria/posts-redes/x/salon-de-belleza.webp",
+          "alt": {
+            "es": "«¿Tienes salón de belleza?» Posts para X: uñas, maquillaje y servicios",
+            "en": "“Do you own a beauty salon?” X posts: nails, makeup and services"
+          },
+          "w": 1920,
+          "h": 1280
+        }
+      ]
     }
   ]
 }
